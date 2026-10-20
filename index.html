@@ -76,7 +76,7 @@ function makeArticle(a){
 async function loadNews(){
  const root=document.getElementById('news'),status=document.getElementById('status');
  try{
-  const response=await fetch('../data/news.json',{cache:'no-store'});
+  const response=await fetch('./data/news.json',{cache:'no-store'});
   if(!response.ok)throw Error('news.json を取得できません（HTTP '+response.status+'）');
   const articles=await response.json();if(!Array.isArray(articles))throw Error('news.json は記事一覧の配列ではありません');
   status.textContent=`保存済み：${articles.length}件（絞り込みは表示のみ）`;
