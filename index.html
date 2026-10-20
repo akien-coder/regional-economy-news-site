@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Regional Economy Watch</title>
+<style>
+:root {font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;color:#242b34;background:#f5f6f8}
+body {max-width:1000px;margin:auto;padding:20px}
+header {border-bottom:2px solid #2b5274;padding:10px 0 18px}
+h1 {font-size:1.6rem;margin:5px 0} h2{font-size:1.4rem;border-left:5px solid #3076ad;padding-left:12px} h3{font-size:1rem}
+section.region{background:white;border-radius:12px;margin:22px 0;padding:20px}
+.article{border-bottom:1px solid #e6e9ed;padding:10px 0;line-height:1.5}
+.article a{font-weight:650;color:#11589d;text-decoration:none}.article a:hover{text-decoration:underline}
+.meta,.status,.hint{color:#647080;font-size:.83rem}.status{margin-top:8px}
+details{margin-top:16px;border-top:1px solid #dee3e8;padding-top:12px}
+summary{cursor:pointer;font-weight:600;color:#45586a}
+.tag{background:#eef2f7;border-radius:5px;padding:2px 5px;font-size:.76rem;color:#48576a}
+.warn{background:#fff7e7;border-radius:7px;padding:10px 12px;font-size:.85rem}
+</style>
+</head>
+<body>
+<header><h1>Regional Economy Watch</h1><div>地域経済ニュース｜火曜・金曜更新予定</div>
+<div class="status" id="status">ニュースデータを読み込み中…</div></header>
+<p class="hint">地域との関連が見出しから確認できる記事を優先表示。判断できない記事は各地域の「要確認」を開くと見られます。保存データは削除しません。</p>
+<main id="news"></main>
+<script>
+const regions=['オウル','鶴岡','米子','神戸'];
+// 研究対象企業・機関そのものの記事は、地域名がなくても優先表示。
+const subjects={
+ 'オウル':['businessoulu','oulun yliopisto','university of oulu','nokian oulu','tactotek','haltian','fingersoft','quieton'],
+ '鶴岡':['spiber','メタジェン','フェルメクテス','サリバテック','ヒューマン・メタボローム・テクノロジーズ','慶應義塾大学先端生命科学研究所','鶴岡サイエンスパーク','鶴岡ガストロノミック'],
+ '米子':['trans chromosomics','とっとりバイオフロンティア','染色体工学'],
+ '神戸':['神戸医療産業都市','神戸医療産業都市推進機構','ビジョンケア','vc gene therapy','vc cell therapy','バッカス・バイオイノベーション']
+};
+const locations={
+ 'オウル':['oulu','oulun','oulussa','oululais'],
+ '鶴岡':['鶴岡','荘内','庄内','羽黒','櫛引','温海'],
+ '米子':['米子','中海','皆生'],
+ '神戸':['神戸','ポートアイランド','三宮','三ノ宮','新長田','六甲アイランド']
+};
+const economy=['経済','企業','産業','投資','雇用','研究','大学','技術','開発','製造','起業','資金','バイオ','医療','観光','商業','農業','食品','食文化','文化','再開発','まちづくり','人口','政策','連携','事業','施設','建設','交通','鉄道','空港','港湾','地域振興','寄付','社会貢献','talous','yrity','investoin','työllis','teknologia','tutkimus','yliopisto','matkailu','kehitys','teollisuus','kaupunki','kulttuuri','rakentami','business','economy','investment','startup','industry','innovation','university','employment','tourism','technology','research','development','culture'];
+const notEconomic=['試合結果','試合速報','勝敗予想','ottelutulos','urheilutulokset','match highlights','match result'];
+const normalize=s=>(s||'').normalize('NFKC').toLocaleLowerCase();
+const containsAny=(s,words)=>words.some(w=>s.includes(normalize(w)));
+const titleWithoutOutlet=a=>{
+ let t=a.title||'';
+ const source=(a.publisher||'').trim();
+ // Google News often appends the publisher after a dash.
+ if(source && t.toLowerCase().endsWith(' - '+source.toLowerCase())) t=t.slice(0,-source.length-3);
+ return t.replace(/\s+[\-–—｜|]\s+(?:Yahoo!ニュース|Yahoo!ファイナンス|47NEWS|dメニューニュース|山形新聞|荘内日報|日本海新聞|神戸新聞|Kaleva|Yle)$/i,'').trim();
+};
+const dedupeKey=a=>normalize(titleWithoutOutlet(a)).replace(/[\s、。！!？?「」『』【】（）()・:：｜|]/g,'');
+function classify(a){
+ const region=a.region;
+ const t=normalize(titleWithoutOutlet(a));
+ if(!t) return 'review';
+ const subject=containsAny(t,subjects[region]||[]);
+ const located=containsAny(t,locations[region]||[]);
+ const economyRelated=containsAny(t,economy);
+ if(subject) return 'main';
+ if(located && economyRelated && !containsAny(t,notEconomic)) return 'main';
+ // The keyword that retrieved a story can relate to text not present in its headline.
+ // Preserve those stories for manual review, rather than deleting important out-of-region partnerships.
+ return 'review';
+}
+function makeArticle(a){
+ const div=document.createElement('div');div.className='article';
+ const link=document.createElement('a');link.textContent=a.title_ja||titleWithoutOutlet(a)||a.title||'（無題）';
+ try{const u=new URL(a.url,location.href);if(['https:','http:'].includes(u.protocol)){link.href=u.href;link.target='_blank';link.rel='noopener noreferrer';}}catch(e){}
+ const meta=document.createElement('div');meta.className='meta';
+ let d=a.date||'';try{if(d)d=new Date(d).toLocaleDateString('ja-JP');}catch(e){}
+ meta.textContent=[a.publisher||'出典不明',d].filter(Boolean).join(' ｜ ');
+ div.append(link,meta);return div;
+}
+async function loadNews(){
+ const root=document.getElementById('news'),status=document.getElementById('status');
+ try{
+  const response=await fetch('../data/news.json',{cache:'no-store'});
+  if(!response.ok)throw Error('news.json を取得できません（HTTP '+response.status+'）');
+  const articles=await response.json();if(!Array.isArray(articles))throw Error('news.json は記事一覧の配列ではありません');
+  status.textContent=`保存済み：${articles.length}件（絞り込みは表示のみ）`;
+  for(const region of regions){
+    const section=document.createElement('section');section.className='region';
+    const h=document.createElement('h2');h.textContent=region;section.append(h);
+    const matches=articles.filter(a=>a.region===region).sort((a,b)=>(Number(b.timestamp)||0)-(Number(a.timestamp)||0));
+    const seen=new Set(),main=[],review=[];
+    for(const a of matches){
+      const k=dedupeKey(a);if(!k||seen.has(k))continue;
+      seen.add(k);(classify(a)==='main'?main:review).push(a);
+    }
+    const hint=document.createElement('p');hint.className='hint';hint.textContent=`優先表示 ${main.length}件／要確認 ${review.length}件（重複を除く）`;section.append(hint);
+    if(!main.length){const p=document.createElement('p');p.textContent='確実に関連すると判定できた見出しはありません。下の「要確認」もご覧ください。';section.append(p);}
+    main.slice(0,20).forEach(a=>section.append(makeArticle(a)));
+    const detail=document.createElement('details');const summary=document.createElement('summary');summary.textContent=`要確認の記事を見る（${review.length}件）`;
+    detail.append(summary);
+    const note=document.createElement('p');note.className='warn';note.textContent='地域名や対象企業名が見出しに出ていない記事です。メタジェンなどの域外連携を含む可能性があるため、削除せずここに残しています。';detail.append(note);
+    review.slice(0,100).forEach(a=>detail.append(makeArticle(a)));
+    section.append(detail);root.append(section);
+  }
+ }catch(err){status.textContent='データの読み込みに失敗';root.textContent=err.message;}
+}
+loadNews();
+</script>
+</body>
+</html>
