@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="ja">
 <head>
@@ -5,101 +6,409 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Regional Economy Watch</title>
 <style>
-:root {font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;color:#242b34;background:#f5f6f8}
-body {max-width:1000px;margin:auto;padding:20px}
-header {border-bottom:2px solid #2b5274;padding:10px 0 18px}
-h1 {font-size:1.6rem;margin:5px 0} h2{font-size:1.4rem;border-left:5px solid #3076ad;padding-left:12px} h3{font-size:1rem}
-section.region{background:white;border-radius:12px;margin:22px 0;padding:20px}
-.article{border-bottom:1px solid #e6e9ed;padding:10px 0;line-height:1.5}
-.article a{font-weight:650;color:#11589d;text-decoration:none}.article a:hover{text-decoration:underline}
-.meta,.status,.hint{color:#647080;font-size:.83rem}.status{margin-top:8px}
+:root{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;color:#242b34;background:#f5f6f8}
+*{box-sizing:border-box}
+body{max-width:1050px;margin:auto;padding:20px}
+header{border-bottom:2px solid #2b5274;padding:10px 0 18px}
+h1{font-size:1.6rem;margin:5px 0}
+h2{font-size:1.4rem;border-left:5px solid #3076ad;padding-left:12px}
+section.region{background:white;border-radius:12px;margin:20px 0;padding:20px}
+.article{border-bottom:1px solid #e6e9ed;padding:11px 0;line-height:1.55}
+.article a{font-weight:650;color:#11589d;text-decoration:none}
+.article a:hover{text-decoration:underline}
+.meta,.status,.hint{color:#647080;font-size:.85rem}
+.status{margin-top:8px}
 details{margin-top:16px;border-top:1px solid #dee3e8;padding-top:12px}
 summary{cursor:pointer;font-weight:600;color:#45586a}
-.tag{background:#eef2f7;border-radius:5px;padding:2px 5px;font-size:.76rem;color:#48576a}
 .warn{background:#fff7e7;border-radius:7px;padding:10px 12px;font-size:.85rem}
+.controls{background:#fff;padding:18px;border-radius:12px;margin:20px 0;display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px}
+.field{display:flex;flex-direction:column;gap:5px}
+.field label{font-weight:600;font-size:.85rem}
+input,select,button{font:inherit}
+input,select{border:1px solid #bcc6d0;border-radius:7px;padding:10px;min-width:0;background:white;width:100%}
+button{padding:8px 14px;border:1px solid #9bb1c4;background:#fff;color:#205782;border-radius:7px;cursor:pointer}
+button:hover{background:#eef5fb}
+.controls-foot{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.loadmore{display:block;margin:14px auto 0}
+.empty{color:#647080}
+@media(max-width:650px){
+ body{padding:12px}
+ .controls{grid-template-columns:1fr}
+ .controls-foot{grid-column:1}
+ section.region{padding:14px}
+}
 </style>
 </head>
 <body>
-<header><h1>Regional Economy Watch</h1><div>地域経済ニュース｜火曜・金曜更新予定</div>
-<div class="status" id="status">ニュースデータを読み込み中…</div></header>
-<p class="hint">地域との関連が見出しから確認できる記事を優先表示。判断できない記事は各地域の「要確認」を開くと見られます。保存データは削除しません。</p>
+<header>
+<h1>Regional Economy Watch</h1>
+<div>地域経済ニュース｜火曜・金曜更新予定</div>
+<div class="status" id="status">ニュースデータを読み込み中…</div>
+</header>
+
+<div class="controls" aria-label="記事検索と絞り込み">
+ <div class="field">
+  <label for="search">キーワード検索</label>
+  <input id="search" type="search" placeholder="例：Spiber、鳥取大学、Nokia">
+ </div>
+ <div class="field">
+  <label for="region-filter">地域</label>
+  <select id="region-filter">
+   <option value="">すべての地域</option>
+   <option>オウル</option>
+   <option>鶴岡</option>
+   <option>米子</option>
+   <option>神戸</option>
+  </select>
+ </div>
+ <div class="field">
+  <label for="month-filter">掲載年月</label>
+  <select id="month-filter">
+   <option value="">すべての年月</option>
+  </select>
+ </div>
+ <div class="controls-foot">
+  <span class="hint" id="filter-count">読み込み中…</span>
+  <button id="clear-filters" type="button">絞り込みを解除</button>
+ </div>
+</div>
+
+<p class="hint">
+地域との関連が見出しから確認できる記事を優先表示。
+判断できない記事は各地域の「要確認」に残しています。
+検索では「要確認」も対象です。
+記事が多い場合は「さらに表示」で過去の記事を読めます。
+</p>
+
 <main id="news"></main>
+
 <script>
 const regions=['オウル','鶴岡','米子','神戸'];
-// 研究対象企業・機関そのものの記事は、地域名がなくても優先表示。
+
 const subjects={
  'オウル':['businessoulu','oulun yliopisto','university of oulu','nokian oulu','tactotek','haltian','fingersoft','quieton'],
  '鶴岡':['spiber','メタジェン','フェルメクテス','サリバテック','ヒューマン・メタボローム・テクノロジーズ','慶應義塾大学先端生命科学研究所','鶴岡サイエンスパーク','鶴岡ガストロノミック'],
  '米子':['trans chromosomics','とっとりバイオフロンティア','染色体工学'],
  '神戸':['神戸医療産業都市','神戸医療産業都市推進機構','ビジョンケア','vc gene therapy','vc cell therapy','バッカス・バイオイノベーション']
 };
+
 const locations={
  'オウル':['oulu','oulun','oulussa','oululais'],
  '鶴岡':['鶴岡','荘内','庄内','羽黒','櫛引','温海'],
  '米子':['米子','中海','皆生'],
  '神戸':['神戸','ポートアイランド','三宮','三ノ宮','新長田','六甲アイランド']
 };
-const economy=['経済','企業','産業','投資','雇用','研究','大学','技術','開発','製造','起業','資金','バイオ','医療','観光','商業','農業','食品','食文化','文化','再開発','まちづくり','人口','政策','連携','事業','施設','建設','交通','鉄道','空港','港湾','地域振興','寄付','社会貢献','talous','yrity','investoin','työllis','teknologia','tutkimus','yliopisto','matkailu','kehitys','teollisuus','kaupunki','kulttuuri','rakentami','business','economy','investment','startup','industry','innovation','university','employment','tourism','technology','research','development','culture'];
-const notEconomic=['試合結果','試合速報','勝敗予想','ottelutulos','urheilutulokset','match highlights','match result'];
-const normalize=s=>(s||'').normalize('NFKC').toLocaleLowerCase();
+
+const economy=[
+ '経済','企業','産業','投資','雇用','研究','大学','技術','開発','製造','起業',
+ '資金','バイオ','医療','観光','商業','農業','食品','食文化','文化',
+ '再開発','まちづくり','人口','政策','連携','事業','施設','建設',
+ '交通','鉄道','空港','港湾','地域振興','寄付','社会貢献',
+ 'talous','yrity','investoin','työllis','teknologia','tutkimus',
+ 'yliopisto','matkailu','kehitys','teollisuus','kaupunki','kulttuuri',
+ 'rakentami','business','economy','investment','startup','industry',
+ 'innovation','university','employment','tourism','technology',
+ 'research','development','culture'
+];
+
+const notEconomic=[
+ '試合結果','試合速報','勝敗予想',
+ 'ottelutulos','urheilutulokset','match highlights','match result'
+];
+
+const normalize=s=>String(s??'').normalize('NFKC').toLocaleLowerCase();
 const containsAny=(s,words)=>words.some(w=>s.includes(normalize(w)));
+
 const titleWithoutOutlet=a=>{
  let t=a.title||'';
  const source=(a.publisher||'').trim();
- // Google News often appends the publisher after a dash.
- if(source && t.toLowerCase().endsWith(' - '+source.toLowerCase())) t=t.slice(0,-source.length-3);
- return t.replace(/\s+[\-–—｜|]\s+(?:Yahoo!ニュース|Yahoo!ファイナンス|47NEWS|dメニューニュース|山形新聞|荘内日報|日本海新聞|神戸新聞|Kaleva|Yle)$/i,'').trim();
+
+ if(source && t.toLowerCase().endsWith(' - '+source.toLowerCase())){
+  t=t.slice(0,-source.length-3);
+ }
+
+ return t.replace(
+  /\s+[\-–—｜|]\s+(?:Yahoo!ニュース|Yahoo!ファイナンス|47NEWS|dメニューニュース|山形新聞|荘内日報|日本海新聞|神戸新聞|Kaleva|Yle)$/i,
+  ''
+ ).trim();
 };
-const dedupeKey=a=>normalize(titleWithoutOutlet(a)).replace(/[\s、。！!？?「」『』【】（）()・:：｜|]/g,'');
+
+const dedupeKey=a=>normalize(titleWithoutOutlet(a))
+ .replace(/[\s、。！!？?「」『』【】（）()・:：｜|]/g,'');
+
 function classify(a){
  const region=a.region;
  const t=normalize(titleWithoutOutlet(a));
- if(!t) return 'review';
- const subject=containsAny(t,subjects[region]||[]);
- const located=containsAny(t,locations[region]||[]);
- const economyRelated=containsAny(t,economy);
- if(subject) return 'main';
- if(located && economyRelated && !containsAny(t,notEconomic)) return 'main';
- // The keyword that retrieved a story can relate to text not present in its headline.
- // Preserve those stories for manual review, rather than deleting important out-of-region partnerships.
+
+ if(!t)return 'review';
+ if(containsAny(t,subjects[region]||[]))return 'main';
+
+ if(
+  containsAny(t,locations[region]||[]) &&
+  containsAny(t,economy) &&
+  !containsAny(t,notEconomic)
+ ){
+  return 'main';
+ }
+
  return 'review';
 }
-function makeArticle(a){
- const div=document.createElement('div');div.className='article';
- const link=document.createElement('a');link.textContent=a.title_ja||titleWithoutOutlet(a)||a.title||'（無題）';
- try{const u=new URL(a.url,location.href);if(['https:','http:'].includes(u.protocol)){link.href=u.href;link.target='_blank';link.rel='noopener noreferrer';}}catch(e){}
- const meta=document.createElement('div');meta.className='meta';
- let d=a.date||'';try{if(d)d=new Date(d).toLocaleDateString('ja-JP');}catch(e){}
- meta.textContent=[a.publisher||'出典不明',d].filter(Boolean).join(' ｜ ');
- div.append(link,meta);return div;
+
+function articleTime(a){
+ const n=Number(a.timestamp);
+
+ if(Number.isFinite(n)&&n>0){
+  const d=new Date(n<1e11?n*1000:n);
+  if(!Number.isNaN(d.getTime()))return d;
+ }
+
+ if(a.date){
+  const d=new Date(a.date);
+  if(!Number.isNaN(d.getTime()))return d;
+ }
+
+ return null;
 }
+
+function monthKey(a){
+ const d=articleTime(a);
+ return d
+  ? `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`
+  : '';
+}
+
+function makeArticle(a){
+ const div=document.createElement('div');
+ div.className='article';
+
+ const link=document.createElement('a');
+ link.textContent=a.title_ja||titleWithoutOutlet(a)||a.title||'（無題）';
+
+ try{
+  const u=new URL(a.url,location.href);
+  if(['https:','http:'].includes(u.protocol)){
+   link.href=u.href;
+   link.target='_blank';
+   link.rel='noopener noreferrer';
+  }
+ }catch(e){}
+
+ const meta=document.createElement('div');
+ meta.className='meta';
+
+ const date=articleTime(a);
+ meta.textContent=[
+  a.publisher||'出典不明',
+  date?date.toLocaleDateString('ja-JP'):a.date||''
+ ].filter(Boolean).join(' ｜ ');
+
+ div.append(link,meta);
+ return div;
+}
+
+const byRegion={};
+
+const root=document.getElementById('news');
+const status=document.getElementById('status');
+const search=document.getElementById('search');
+const regionFilter=document.getElementById('region-filter');
+const monthFilter=document.getElementById('month-filter');
+const filterCount=document.getElementById('filter-count');
+
+function addList(container,items,initial=20){
+ let count=0;
+
+ const button=document.createElement('button');
+ button.className='loadmore';
+ button.type='button';
+
+ function showNext(){
+  const chunk=items.slice(count,count+initial);
+
+  chunk.forEach(a=>{
+   container.insertBefore(makeArticle(a),button);
+  });
+
+  count+=chunk.length;
+
+  button.hidden=count>=items.length;
+  button.textContent=`さらに表示（残り ${items.length-count}件）`;
+ }
+
+ button.addEventListener('click',showNext);
+ container.append(button);
+ showNext();
+}
+
+function render(){
+ const query=normalize(search.value.trim());
+ const region=regionFilter.value;
+ const month=monthFilter.value;
+
+ root.replaceChildren();
+ let total=0;
+
+ for(const name of regions){
+  if(region&&region!==name)continue;
+
+  const matches=(byRegion[name]||[]).filter(a=>{
+   const correctMonth=!month||monthKey(a)===month;
+   const correctQuery=!query||normalize([
+    a.title,a.title_ja,a.publisher,a.region
+   ].join(' ')).includes(query);
+
+   return correctMonth&&correctQuery;
+  });
+
+  if(!matches.length)continue;
+  total+=matches.length;
+
+  const section=document.createElement('section');
+  section.className='region';
+
+  const h=document.createElement('h2');
+  h.textContent=name;
+  section.append(h);
+
+  const main=matches.filter(a=>a._category==='main');
+  const review=matches.filter(a=>a._category==='review');
+
+  const hint=document.createElement('p');
+  hint.className='hint';
+  hint.textContent=
+   `該当 ${matches.length}件（優先 ${main.length}件／要確認 ${review.length}件・重複除外）`;
+  section.append(hint);
+
+  if(main.length){
+   addList(section,main,20);
+  }else{
+   const p=document.createElement('p');
+   p.className='empty';
+   p.textContent='優先記事はありません。下の「要確認」をご覧ください。';
+   section.append(p);
+  }
+
+  if(review.length){
+   const detail=document.createElement('details');
+
+   const summary=document.createElement('summary');
+   summary.textContent=`要確認の記事を見る（${review.length}件）`;
+   detail.append(summary);
+
+   const note=document.createElement('p');
+   note.className='warn';
+   note.textContent=
+    '地域名や対象企業名が見出しに出ていない記事です。域外連携を含む可能性があるため残しています。';
+   detail.append(note);
+
+   addList(detail,review,20);
+   section.append(detail);
+  }
+
+  root.append(section);
+ }
+
+ filterCount.textContent=`検索結果 ${total}件（重複を除く）`;
+
+ if(!total){
+  const p=document.createElement('p');
+  p.className='empty';
+  p.textContent='該当記事はありません。年月・地域・検索語を変更してください。';
+  root.append(p);
+ }
+}
+
 async function loadNews(){
- const root=document.getElementById('news'),status=document.getElementById('status');
  try{
   const response=await fetch('./data/news.json',{cache:'no-store'});
-  if(!response.ok)throw Error('news.json を取得できません（HTTP '+response.status+'）');
-  const articles=await response.json();if(!Array.isArray(articles))throw Error('news.json は記事一覧の配列ではありません');
-  status.textContent=`保存済み：${articles.length}件（絞り込みは表示のみ）`;
-  for(const region of regions){
-    const section=document.createElement('section');section.className='region';
-    const h=document.createElement('h2');h.textContent=region;section.append(h);
-    const matches=articles.filter(a=>a.region===region).sort((a,b)=>(Number(b.timestamp)||0)-(Number(a.timestamp)||0));
-    const seen=new Set(),main=[],review=[];
-    for(const a of matches){
-      const k=dedupeKey(a);if(!k||seen.has(k))continue;
-      seen.add(k);(classify(a)==='main'?main:review).push(a);
-    }
-    const hint=document.createElement('p');hint.className='hint';hint.textContent=`優先表示 ${main.length}件／要確認 ${review.length}件（重複を除く）`;section.append(hint);
-    if(!main.length){const p=document.createElement('p');p.textContent='確実に関連すると判定できた見出しはありません。下の「要確認」もご覧ください。';section.append(p);}
-    main.slice(0,20).forEach(a=>section.append(makeArticle(a)));
-    const detail=document.createElement('details');const summary=document.createElement('summary');summary.textContent=`要確認の記事を見る（${review.length}件）`;
-    detail.append(summary);
-    const note=document.createElement('p');note.className='warn';note.textContent='地域名や対象企業名が見出しに出ていない記事です。メタジェンなどの域外連携を含む可能性があるため、削除せずここに残しています。';detail.append(note);
-    review.slice(0,100).forEach(a=>detail.append(makeArticle(a)));
-    section.append(detail);root.append(section);
+
+  if(!response.ok){
+   throw Error('news.json を取得できません（HTTP '+response.status+'）');
   }
- }catch(err){status.textContent='データの読み込みに失敗';root.textContent=err.message;}
+
+  const articles=await response.json();
+
+  if(!Array.isArray(articles)){
+   throw Error('news.json は記事一覧の配列ではありません');
+  }
+
+  const seenByRegion=new Map();
+
+  for(const name of regions){
+   byRegion[name]=[];
+  }
+
+  const sorted=[...articles].sort(
+   (a,b)=>
+    (articleTime(b)?.getTime()||0)-
+    (articleTime(a)?.getTime()||0)
+  );
+
+  for(const a of sorted){
+   if(!regions.includes(a.region))continue;
+
+   const k=dedupeKey(a);
+   if(!k)continue;
+
+   if(!seenByRegion.has(a.region)){
+    seenByRegion.set(a.region,new Set());
+   }
+
+   const seen=seenByRegion.get(a.region);
+
+   if(seen.has(k))continue;
+
+   seen.add(k);
+   byRegion[a.region].push({
+    ...a,
+    _category:classify(a)
+   });
+  }
+
+  const months=[
+   ...new Set(
+    Object.values(byRegion)
+     .flat()
+     .map(monthKey)
+     .filter(Boolean)
+   )
+  ].sort().reverse();
+
+  for(const m of months){
+   const option=document.createElement('option');
+   option.value=m;
+
+   const [y,mo]=m.split('-');
+   option.textContent=`${y}年${Number(mo)}月`;
+
+   monthFilter.append(option);
+  }
+
+  const distinct=Object.values(byRegion)
+   .reduce((n,list)=>n+list.length,0);
+
+  status.textContent=
+   `保存済み：${articles.length}件／表示対象：${distinct}件（重複除外）`;
+
+  render();
+
+ }catch(err){
+  status.textContent='データの読み込みに失敗';
+  root.textContent=err.message;
+ }
 }
+
+search.addEventListener('input',render);
+regionFilter.addEventListener('change',render);
+monthFilter.addEventListener('change',render);
+
+document.getElementById('clear-filters').addEventListener('click',()=>{
+ search.value='';
+ regionFilter.value='';
+ monthFilter.value='';
+ render();
+});
+
 loadNews();
 </script>
 </body>
