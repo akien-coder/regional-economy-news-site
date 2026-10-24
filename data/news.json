@@ -15,7 +15,17 @@
     "date": "Fri, 23 Oct 2026 12:25:23 GMT",
     "timestamp": 1792758323.0,
     "publisher": "Teknologiateollisuus ry",
-    "search_source": "BusinessOulu"
+    "search_source": "BusinessOulu",
+    "title_ja": "レジリエンスを鍛える：不確実な世界でいかにして組織を導くか - Teknologiateollisuus ry"
+  },
+  {
+    "region": "神戸",
+    "title": "竣工したDP-Lab KOBE内に細胞製造拠点を整備・稼働 ヘリオス - 医薬通信社",
+    "url": "https://news.google.com/rss/articles/CBMi3AJBVV95cUxPSTZDNzNGOTlWRXJOdmVveDFrcWJ5cHpIX0VVMlA2RnNLSG5RcHFsYXFsQWdQLUx1NkxjSG53U0dLeS16MEtQQ3FaX2pWU3Vnb1dkc2tHckV6ckRTUVpiM3pOcU5hUHl4Q0NYTkswYlNJS3FrZzZzaU00QkZpd3p5Uk82UmFCaHN4dFl3YVdtNHl0bnMyWGhkeTIzTGFzOFczdU5GR05BOE9KSnE5eVVNbUNueUVuTU13czctTkpSZGhmU0QzSWR6UVZWOVN6SkIydkZDUkNoa2xZdHhkcUlsdW5ISUxGT08weExkY2dFaTJrakVlTjQtVmxTVklNaUVqdFl5M1dPc3pWMVdYcU9yb1pIQm5pektFLVFfclVwNmpJZGRTTXd2Z3NQVFZlZTNGNkk3NXJzZWVZQ1NBYkxqRVBLaXRIXzItR0N6R19WNG9jcVlNNnpEU0Y0eVc?oc=5",
+    "date": "Fri, 23 Oct 2026 10:58:30 GMT",
+    "timestamp": 1792753110.0,
+    "publisher": "医薬通信社",
+    "search_source": "地域経済全般"
   },
   {
     "region": "鶴岡",
@@ -43,6 +53,15 @@
     "timestamp": 1792733400.0,
     "publisher": "神戸新聞",
     "search_source": "神戸新聞"
+  },
+  {
+    "region": "米子",
+    "title": "【鳥取】鳥大病院に「熱傷高度治療・研究センター」設置へ 京アニ事件の主治医・上田教授が手腕（中海テレビ放送） - Yahoo!ニュース",
+    "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9RT195eUNfaXF3NlpZbmtVRUl5YVJjSm1QQmpPMFdzb0l4U3ZPVTRtN1pTVVlVRTh5S05CTDVubmI1MDdUandOZ0Nzcm9BTDNfOHNpT3RGMTdjUkg3YWxXMjhONXFtbzVablNZcTJZSkUxTjJmLVpwWmN0dWRYUlk?oc=5",
+    "date": "Fri, 23 Oct 2026 01:20:28 GMT",
+    "timestamp": 1792718428.0,
+    "publisher": "Yahoo!ニュース",
+    "search_source": "鳥取大学"
   },
   {
     "region": "米子",
@@ -82,6 +101,25 @@
   },
   {
     "region": "神戸",
+    "title": "神戸医療産業都市、研究拠点の集積加速 - 化学工業日報 電子版",
+    "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFA5SGR5XzhfaVdBcjJwZExxTjBuYjMxWHNYdTZWTG0yNDJ1TkpNd0l4ckU5eVFtaE5IR1FJY2FPcDJzOGI3Mll2U1RYX2wybHd1dExz?oc=5",
+    "date": "Thu, 22 Oct 2026 06:33:14 GMT",
+    "timestamp": 1792650794.0,
+    "publisher": "化学工業日報 電子版",
+    "search_source": "神戸医療産業都市"
+  },
+  {
+    "region": "オウル",
+    "title": "Nokian liikevaihto tekoäly- ja pilvipalveluasiakkailta yli kaksinkertaistui heinä-syyskuussa - Kaleva",
+    "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPQlRDZEZlME1OYkZmNEZSSllXdXBTWExkS1RsMEFmMWs0NTVkenNNY3pCcm9oMHdDclo4QlMwMmJqX2d1N3BBV2xQdXVHRkVSbzI0Z3Q1c1FrRDlCLUdJc0s2akViU0NUNWIwcl9NajVacDlna1EtTGdjNV9MMV9na2IxbnhHTXdZ?oc=5",
+    "date": "Thu, 22 Oct 2026 05:42:59 GMT",
+    "timestamp": 1792647779.0,
+    "publisher": "Kaleva",
+    "search_source": "Kaleva",
+    "title_ja": "ノキア、7月〜9月のAIおよびクラウドサービス顧客からの売上高が2倍以上に増加 - Kaleva"
+  },
+  {
+    "region": "神戸",
     "title": "心響く熟練のシューベルト 神戸出身・幣が呼びかけ、独名門オケの室内楽団 11月に西宮で公演|文化 - 神戸新聞",
     "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1qRXp0VE9hUmtOWXFnWlZ4NG9TWEhPVTdCTnR0NFVBS2Yzb2xWalctQ1htdjV1S0cwZFJkbzlPaVN2bkhqMXJSckozdlBkN2dwclA5UjhUZ1VDTUdtamxQRnQwQVZOTWpTWWtIc1B3?oc=5",
     "date": "Wed, 21 Oct 2026 20:10:00 GMT",
@@ -97,7 +135,8 @@
     "timestamp": 1792584000.0,
     "publisher": "BusinessOulu Hyviä uutisia (FI)",
     "search_source": "BusinessOulu Hyviä uutisia (FI)",
-    "official_mandatory": true
+    "official_mandatory": true,
+    "title_ja": "オウル発の繊維修理イノベーションが業界最高評価を獲得"
   },
   {
     "region": "神戸",
@@ -109,6 +148,24 @@
     "search_source": "神戸新聞"
   },
   {
+    "region": "神戸",
+    "title": "神戸医療産業都市に細胞製造拠点を整備 ヘリオス、28年稼働開始目指す | 日刊薬業 - 医薬品産業の総合情報サイト - 日刊薬業",
+    "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE0xNGpqV1V6QnlrSkxpbjFXaEx5UkxmMjA5NDF4aEtlejlvRVpxRGpXU2xlTkFyekd3aElmcFh0dmpFTWFqZ09lNA?oc=5",
+    "date": "Wed, 21 Oct 2026 08:54:37 GMT",
+    "timestamp": 1792572877.0,
+    "publisher": "日刊薬業",
+    "search_source": "神戸医療産業都市"
+  },
+  {
+    "region": "神戸",
+    "title": "ノルレボ、よくある疑問を紹介 第一三共ヘルスケア、承認から1周年で | 日刊薬業 - 医薬品産業の総合情報サイト - 日刊薬業",
+    "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE5lVk9wS0l4aUxRTktybDhIMzdMMmlJbnhIcE9jd3FQNXB3bGozVTJRZ3N6a1FMbzlreXhwUHRRS2V0b2dzbW1rcw?oc=5",
+    "date": "Wed, 21 Oct 2026 01:19:00 GMT",
+    "timestamp": 1792545540.0,
+    "publisher": "日刊薬業",
+    "search_source": "地域経済全般"
+  },
+  {
     "region": "オウル",
     "title": "Työllisyyskatsaus, syyskuu 2026",
     "url": "https://www.businessoulu.com/uutiset/tyollisyyskatsaus-syyskuu-2026/",
@@ -116,7 +173,17 @@
     "timestamp": 1792497600.0,
     "publisher": "BusinessOulu Hyviä uutisia (FI)",
     "search_source": "BusinessOulu Hyviä uutisia (FI)",
-    "official_mandatory": true
+    "official_mandatory": true,
+    "title_ja": "雇用統計、2026年9月"
+  },
+  {
+    "region": "神戸",
+    "title": "神戸・医療産業都市に民間初の賃貸型研究施設 大和ハウスが新設、創薬やバイオ関連企業向け|経済ニュース - 神戸新聞",
+    "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9NSFJZZWFBMGRvdmZObzBnaVprX1RjM3dsUTVOajcxWnpYdjVHVXVRS29MTUV4RjAyRzR1UnlSMUVSNEZwMFdSUmxkX2ppa0pXbm5yMkF3YzhuT3h1bVQ2NlF1TFRyOXYtdlhHNGZn?oc=5",
+    "date": "Tue, 20 Oct 2026 08:19:25 GMT",
+    "timestamp": 1792484365.0,
+    "publisher": "神戸新聞",
+    "search_source": "神戸医療産業都市"
   },
   {
     "region": "神戸",
@@ -126,6 +193,24 @@
     "timestamp": 1792473476.0,
     "publisher": "島津製作所",
     "search_source": "バッカス・バイオイノベーション"
+  },
+  {
+    "region": "神戸",
+    "title": "台湾の再生医療は産業化一直線 - 日経バイオテクONLINE",
+    "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBicnBhMWJkUEQ5dVo0Ym15SGFOTTNwTENYeldOelRyWlRyTHczZi11azNMY01NZ1BpbmhjWmc1YUNRR1hsNERXeXhkdXFPS2ZleU13YWM0M09wcTNNVnhDblFnNFNWaDJOWVZyaWlzcw?oc=5",
+    "date": "Tue, 20 Oct 2026 01:30:18 GMT",
+    "timestamp": 1792459818.0,
+    "publisher": "日経バイオテクONLINE",
+    "search_source": "地域経済全般"
+  },
+  {
+    "region": "神戸",
+    "title": "大和ハウス、神戸医療産業都市でレンタルラボ「DP-Lab KOBE」が竣工 - LOGI-BIZ online",
+    "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE1aRFFvSVZLc3o5WWRBMFFOQmpFMWwtajRDSHRfdVVpSzhJaWZ6Uk9SNWlFcHFpTDBnVDlwYVJTbzdzVm5PVDAtMEp0cw?oc=5",
+    "date": "Mon, 19 Oct 2026 21:00:39 GMT",
+    "timestamp": 1792443639.0,
+    "publisher": "LOGI-BIZ online",
+    "search_source": "神戸医療産業都市"
   },
   {
     "region": "神戸",
@@ -173,6 +258,15 @@
     "search_source": "神戸新聞"
   },
   {
+    "region": "神戸",
+    "title": "カルナバイオ、ＣＢ発行で１億8700万円の資金調達 キャンター向けの一環 - - 神戸経済ニュース",
+    "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBCWmFpTTNfdlp2cU1HNjdqcTNpMHlIR2tWOUxOYThEMlVZcU9lYkJKN1AwWkpDeTN5MDNvYWRSX1JvWWFDNGhlUmRwazQ1NC1seGVHTGR4a21mTTNa?oc=5",
+    "date": "Mon, 19 Oct 2026 17:56:00 GMT",
+    "timestamp": 1792432560.0,
+    "publisher": "- 神戸経済ニュース",
+    "search_source": "地域経済全般"
+  },
+  {
     "region": "オウル",
     "title": "Health Business Dayssa vahvistettiin terveysteknologian verkostoja – tapahtumalle on kysyntää myös jatkossa",
     "url": "https://www.businessoulu.com/uutiset/health-business-dayssa-vahvistettiin-terveysteknologian-verkostoja-tapahtumalle-on-kysyntaa-myos-jatkossa/",
@@ -180,7 +274,8 @@
     "timestamp": 1792411200.0,
     "publisher": "BusinessOulu Hyviä uutisia (FI)",
     "search_source": "BusinessOulu Hyviä uutisia (FI)",
-    "official_mandatory": true
+    "official_mandatory": true,
+    "title_ja": "「Health Business Days」でヘルステックのネットワークを強化、今後もイベントへの需要は継続"
   },
   {
     "region": "神戸",
@@ -202,11 +297,48 @@
   },
   {
     "region": "神戸",
+    "title": "大和ハウス工業／神戸医療産業都市にレンタルラボ竣工、進出企業の需要増で - 物流ニュースのLNEWS",
+    "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE1pQk9KdlBBazNtNUk3bks0RXdzSHhlN2NWNEZEZDhYQkpmcnA5Smwwb3RyVER6ZjVQYmFnRDlla01MTlZ0aWNFZHp3aUF4Sm9Ub0duZA?oc=5",
+    "date": "Mon, 19 Oct 2026 06:16:58 GMT",
+    "timestamp": 1792390618.0,
+    "publisher": "物流ニュースのLNEWS",
+    "search_source": "神戸医療産業都市"
+  },
+  {
+    "region": "神戸",
     "title": "神戸医療産業都市、研究施設を誘致の呼び水に 大和ハウスが賃貸型 - 日本経済新聞",
     "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBpYmZYVTVXYWpxQl9hMnA1X3RoVlZhM3ZKQi14eThVQy1NNXMtUXVGTFlGZFRBLTVwTUxRcVRvSWVNVFN0cy1CY2JXU1NwWFdnNjBsRHBEOThIX2ZTY2hQbmpUVkczLUpESnZpTg?oc=5",
     "date": "Mon, 19 Oct 2026 06:01:58 GMT",
     "timestamp": 1792389718.0,
     "publisher": "日本経済新聞",
+    "search_source": "地域経済全般"
+  },
+  {
+    "region": "神戸",
+    "title": "神戸 医療産業都市に新たなレンタルラボが完成 - NHKニュース",
+    "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBPX0JEdGtOcFF2YU1UWnI3YVF0QjRhelkzdko3RnJDNkZhX21UOUhULWhWaGZzbEZ6WkRYTVQyS00xV1JMdjdzOEl6STd4dFVjYXdyS1B6VHpLdC1NcEJF?oc=5",
+    "date": "Mon, 19 Oct 2026 03:39:19 GMT",
+    "timestamp": 1792381159.0,
+    "publisher": "NHKニュース",
+    "search_source": "神戸医療産業都市"
+  },
+  {
+    "region": "オウル",
+    "title": "Tällainen oli Oulu 25 vuotta sitten – Nokia työllisti, Oulu-areenaa suunniteltiin ja bensalitra maksoi 7 markkaa - Kaleva",
+    "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOZ1NvS1I1VEJmZ0NqRFI5d3ZoSzd1aVo2SGlvVXBSajlSbFltRUZ6clJlT2tLTWlYdzR0WmpoYjVHS1pLWHEtWnZVRzQ2cmEySFhlMU1ZRmdMdkZmNUkwUnZ0cl9xSk5IZTlwd1ZHTFRBblZfdTJHLTFybHJiZU92LWplOUVCYlFO?oc=5",
+    "date": "Mon, 19 Oct 2026 03:00:00 GMT",
+    "timestamp": 1792378800.0,
+    "publisher": "Kaleva",
+    "search_source": "Kaleva",
+    "title_ja": "25年前のオウルはこんな姿だった―ノキアが雇用を支え、オウル・アリーナが計画され、ガソリンは1リットル7マルッカだった - Kaleva"
+  },
+  {
+    "region": "神戸",
+    "title": "外資製薬企業、日本でスタートアップ支援…創薬の初期段階から関与、エコシステム構築狙う - Answers（アンサーズ）",
+    "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE82SW5INlVGZklINU5KR1dFR2wyZ1RTYkVpSmxHaWZDajhPclhkLWtQWFI0a05YNUp2enc4dGJ4Q3J2amJWaDcwV1hzTGh3OVNzNG96NXBoQQ?oc=5",
+    "date": "Sun, 18 Oct 2026 21:03:38 GMT",
+    "timestamp": 1792357418.0,
+    "publisher": "Answers（アンサーズ）",
     "search_source": "地域経済全般"
   },
   {
@@ -291,6 +423,15 @@
     "search_source": "VC Cell Therapy"
   },
   {
+    "region": "神戸",
+    "title": "NANOホールディングス、コージンバイオ、ステラファーマが上昇、VIS、Delta-Fly、オンコリスが下落 - 日経バイオテクONLINE",
+    "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9ydlRkbjN2S2VuSXoyMXBxSV8tTG1BOU13aXFsWTRpRlhiVzNCeGs0clFBUUFhYUU1LVBjX292LVNnbWc3LXFUVFJvM3pzcDBkbWxGTm9DQU44T1pESTlycWJZcnRaS2duZjhKMWlJVQ?oc=5",
+    "date": "Fri, 16 Oct 2026 13:11:08 GMT",
+    "timestamp": 1792156268.0,
+    "publisher": "日経バイオテクONLINE",
+    "search_source": "地域経済全般"
+  },
+  {
     "region": "オウル",
     "title": "The NATO Innovation Range Capability Demonstrator event in October...",
     "url": "https://www.businessoulu.com/en/news/the-nato-innovation-range-capability-demonstrator-event-in-october-showcases-expertise-in-defence-and-security-technology/",
@@ -298,7 +439,8 @@
     "timestamp": 1792152000.0,
     "publisher": "BusinessOulu Good news (EN)",
     "search_source": "BusinessOulu Good news (EN)",
-    "official_mandatory": true
+    "official_mandatory": true,
+    "title_ja": "10月に開催されるNATOイノベーション・レンジ・ケイパビリティ・デモンストレーター・イベント"
   },
   {
     "region": "オウル",
@@ -308,7 +450,8 @@
     "timestamp": 1792152000.0,
     "publisher": "BusinessOulu Hyviä uutisia (FI)",
     "search_source": "BusinessOulu Hyviä uutisia (FI)",
-    "official_mandatory": true
+    "official_mandatory": true,
+    "title_ja": "10月の「Nato Innovation Range Capability Demonstrator」イベント、防衛・安全保障技術の専門知識を披露"
   },
   {
     "region": "鶴岡",
@@ -318,6 +461,15 @@
     "timestamp": 1792134000.0,
     "publisher": "東北ITトレンド",
     "search_source": "Spiber"
+  },
+  {
+    "region": "神戸",
+    "title": "ムーンショット目標7：活動紹介 | 国立研究開発法人日本医療研究開発機構 - www.amed.go.jp",
+    "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1oUzBNT3NLZld2SGU2UmJ4M3ZZUHRtdjgwVlpKZm9COHdhT25FeDdGdGRxeTJpZGVXVUdwcjFMRHFzUlJEM0FUUV9kTjdiSjdCZy1qd0ZhSXJpdC1SdzQ5ZlFIYw?oc=5",
+    "date": "Fri, 16 Oct 2026 07:00:00 GMT",
+    "timestamp": 1792134000.0,
+    "publisher": "www.amed.go.jp",
+    "search_source": "地域経済全般"
   },
   {
     "region": "鶴岡",
@@ -455,7 +607,8 @@
     "timestamp": 1791979200.0,
     "publisher": "BusinessOulu Hyviä uutisia (FI)",
     "search_source": "BusinessOulu Hyviä uutisia (FI)",
-    "official_mandatory": true
+    "official_mandatory": true,
+    "title_ja": "法律事務所Norraがヘルシンキに進出し、建設・不動産部門を強化"
   },
   {
     "region": "鶴岡",
@@ -547,7 +700,8 @@
     "timestamp": 1791892800.0,
     "publisher": "BusinessOulu Hyviä uutisia (FI)",
     "search_source": "BusinessOulu Hyviä uutisia (FI)",
-    "official_mandatory": true
+    "official_mandatory": true,
+    "title_ja": "Deep Tech Talent Forumが11月に企業と国際的な人材をつなぐ ― 参加登録受付中"
   },
   {
     "region": "神戸",
@@ -711,7 +865,8 @@
     "timestamp": 1791374400.0,
     "publisher": "BusinessOulu Hyviä uutisia (FI)",
     "search_source": "BusinessOulu Hyviä uutisia (FI)",
-    "official_mandatory": true
+    "official_mandatory": true,
+    "title_ja": "ヨウニ・ヴオリネン氏がHTGPグループの最高財務責任者（CFO）に任命されました"
   },
   {
     "region": "オウル",
@@ -721,7 +876,8 @@
     "timestamp": 1791374400.0,
     "publisher": "BusinessOulu Hyviä uutisia (FI)",
     "search_source": "BusinessOulu Hyviä uutisia (FI)",
-    "official_mandatory": true
+    "official_mandatory": true,
+    "title_ja": "スタディオンクロス・オウルがラーティ・スタジアムへ移転"
   },
   {
     "region": "鶴岡",
@@ -812,7 +968,8 @@
     "timestamp": 1791288000.0,
     "publisher": "BusinessOulu Hyviä uutisia (FI)",
     "search_source": "BusinessOulu Hyviä uutisia (FI)",
-    "official_mandatory": true
+    "official_mandatory": true,
+    "title_ja": "若者の就職活動と進路探しを支援する新しいイベントシリーズが開催"
   },
   {
     "region": "オウル",
@@ -822,7 +979,8 @@
     "timestamp": 1791288000.0,
     "publisher": "BusinessOulu Hyviä uutisia (FI)",
     "search_source": "BusinessOulu Hyviä uutisia (FI)",
-    "official_mandatory": true
+    "official_mandatory": true,
+    "title_ja": "若者を雇おう ― 雇用クーポンで人件費が半額に"
   },
   {
     "region": "オウル",
@@ -832,7 +990,8 @@
     "timestamp": 1791288000.0,
     "publisher": "BusinessOulu Hyviä uutisia (FI)",
     "search_source": "BusinessOulu Hyviä uutisia (FI)",
-    "official_mandatory": true
+    "official_mandatory": true,
+    "title_ja": "人材の獲得と定着に関する経験を教えてください – 「Talent North」アンケートにご回答を"
   },
   {
     "region": "鶴岡",
@@ -909,6 +1068,15 @@
     "search_source": "鳥取大学"
   },
   {
+    "region": "神戸",
+    "title": "台湾のバイオテクノロジー代表団が「バイオジャパン2026（BioJapan 2026）」でCDMO、細胞療法、バイオ医薬品分野における地域のイノベーションを紹介 - 47NEWS",
+    "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE5nbG90ajNMby1HTlFhTEtIWWpxcEl4ZF9qeHhYQ0wxcWtpcUlteC1ZUVNXbWZOVlNUaDFWSXExOWlZMlg0MFJIc2xCNA?oc=5",
+    "date": "Tue, 06 Oct 2026 07:00:00 GMT",
+    "timestamp": 1791270000.0,
+    "publisher": "47NEWS",
+    "search_source": "地域経済全般"
+  },
+  {
     "region": "オウル",
     "title": "Kasvu, rohkeus ja uudistuminen veivät Vuoden Uusyrittäjä 2026 -kilpailun voittoon",
     "url": "https://www.businessoulu.com/uutiset/kasvu-rohkeus-ja-uudistuminen-veivat-vuoden-uusyrittaja-2026-kilpailun-voittoon/",
@@ -916,7 +1084,8 @@
     "timestamp": 1791201600.0,
     "publisher": "BusinessOulu Hyviä uutisia (FI)",
     "search_source": "BusinessOulu Hyviä uutisia (FI)",
-    "official_mandatory": true
+    "official_mandatory": true,
+    "title_ja": "成長、勇気、刷新が「2026年アントレプレナー・オブ・ザ・イヤー」の優勝へ導いた"
   },
   {
     "region": "鶴岡",
@@ -968,6 +1137,15 @@
     "search_source": "神戸医療産業都市推進機構"
   },
   {
+    "region": "神戸",
+    "title": "【藤沢市】湘南アイパークが「BioJapan 2026」に過去最大規模で出展！AI創薬の最前線をパシフィコ横浜で発信 - 湘南人",
+    "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1WVmF1bmh2NGdpQTE2TFZCQmNZa3VzTXZCWVlRaXBwTDVSMTN4TTY1RVhwMlNhMnNiUGFCX0RVZkVnZDZ6cFN2dTkyOHBZYnlxb0lPZm5yNWpjbjVPcHpkdnRoc2ZXdXZvZFhlSXdzYw?oc=5",
+    "date": "Sat, 03 Oct 2026 07:00:00 GMT",
+    "timestamp": 1791010800.0,
+    "publisher": "湘南人",
+    "search_source": "地域経済全般"
+  },
+  {
     "region": "鶴岡",
     "title": "Spiber、自社素材の量産で培った発酵生産技術を受託事業として社外に開放 - PR TIMES",
     "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9EdVhseTMzSm92c2xJQ3dPZkxHWXJfNVpscjdqM1V4MnNQMzhTTHpwVzlfc1ZzTzQzaFlVaU9KN1JzcXVXd2xoOXpSQXJFWXdiV0VWOGV2YWl6V3dUZVJINmFNNTBXVmtXTUE?oc=5",
@@ -996,6 +1174,15 @@
   },
   {
     "region": "神戸",
+    "title": "日本精化、バイオテクノロジーに関するイベント「BioJapan 2026」に出展 - 神戸新聞",
+    "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9VZG40UHdqX3dhOC12azNwWUVTSUN1SzhrOEdpd3o1RFpRNmxIRjBZVzhaY2JXNHh2V1NzQ0RSRTVyVTNBT0xEQVJfbzlkZGNwdUlFak9QUTVZV2ctZzBKQ2d5Z29hdFNQNzZvSWN2YkY?oc=5",
+    "date": "Fri, 02 Oct 2026 07:00:00 GMT",
+    "timestamp": 1790924400.0,
+    "publisher": "神戸新聞",
+    "search_source": "神戸医療産業都市"
+  },
+  {
+    "region": "神戸",
     "title": "【研究進捗報告】 安全性・有効性を高めたiPS細胞由来の次世代型視細胞（網膜シート）開発 - クラウドファンディング - READYFOR",
     "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE1QWXZpb1pFZ1N5SmlmODE5UjNuUzFUV1RfR3pMa1UzMXNZVXQ0T2lFaG81MHpnYmtHRHhJSXRjM2ZwV0NKbER0eTA2aU9BNTlqWmZxQ0lWaVBCQXlwTDlTeURrZ3UyV3hfWC1kNy1Eb3dydlFXQTNxSm12M2M?oc=5",
     "date": "Fri, 02 Oct 2026 06:16:55 GMT",
@@ -1011,7 +1198,8 @@
     "timestamp": 1790856000.0,
     "publisher": "BusinessOulu Good news (EN)",
     "search_source": "BusinessOulu Good news (EN)",
-    "official_mandatory": true
+    "official_mandatory": true,
+    "title_ja": "オウルが「欧州イノベーション首都賞2027」の準決勝に進出"
   },
   {
     "region": "鶴岡",
@@ -1285,6 +1473,25 @@
   },
   {
     "region": "オウル",
+    "title": "Kärp­pien Lin­nan­maan hal­li­han­ke etenee – Rakentaminen käynnistyy lokakuussa - Kaleva",
+    "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNQlpiRFExUEdyMWRNMXhWZGU1SHdTYWJMbm1EV1BFcDhDTk4yVVF6OUpCR3J5czMxSkpBamlWQlBROUdRQl9lWGRfSDVwdmJzTFdaWURQMExvaFlyazdvS0VuUUJDelAzeGhtRGl6YWY2Zm5GdmlsUmhnejNwTVdETG0tRUpEWkdT?oc=5",
+    "date": "Thu, 24 Sep 2026 07:00:00 GMT",
+    "timestamp": 1790233200.0,
+    "publisher": "Kaleva",
+    "search_source": "Kaleva",
+    "title_ja": "ケルペットのリンナンマー・アリーナ計画が前進 ― 10月に着工へ - Kaleva"
+  },
+  {
+    "region": "神戸",
+    "title": "厚労省は創薬・先端医療に1969億円超を要求、治験倍増やAI創薬などを重点領域に - 日経バイオテクONLINE",
+    "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE83YVJDckg1eTNwd0JIeFN3S1pRd0RTTF82eFYteUhQTjZPWlV2X0hBZ0pVekdOZFNocHBidXNIVUFlZWROQTlkeV81b0Y4OEJsZHVIaTFUMzMydWR2QS1JVVdUR1g5dw?oc=5",
+    "date": "Thu, 24 Sep 2026 07:00:00 GMT",
+    "timestamp": 1790233200.0,
+    "publisher": "日経バイオテクONLINE",
+    "search_source": "地域経済全般"
+  },
+  {
+    "region": "オウル",
     "title": "Kaupunginjohtajan talousarvioesitys 2027: Oulun talous vahvistuu ja kaupunki investoi kasvuun - Oulun kaupunki",
     "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPV01vZXNpLWM3TkFaMzJqYmNZUlU3R0FENXhjNzNvck5veEZOalQ5QzFkRFRfNlNLcWNaUEtxUjZ1VUtMcUNwQThJUEZxVWM2bU9fbGtRdms0RkdoY3BtalJCWnpSZ0xKT2pSM2JPNkszMHdfUUx0S2RFWXVsTkpiSVpuUDdveElVSUFzYThwWHQ5OXllLWwzV2owRXlpaVRMR05UNEpfelZ6SlA2MEJWSmF3?oc=5",
     "date": "Wed, 23 Sep 2026 07:00:00 GMT",
@@ -1433,7 +1640,8 @@
     "timestamp": 1789473600.0,
     "publisher": "BusinessOulu Good news (EN)",
     "search_source": "BusinessOulu Good news (EN)",
-    "official_mandatory": true
+    "official_mandatory": true,
+    "title_ja": "SCUBAがオウルでの国境を越えた協力体制を開始"
   },
   {
     "region": "鶴岡",
