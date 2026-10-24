@@ -55,6 +55,25 @@ const titleWithoutOutlet=a=>{
  return t.replace(/\s+[\-–—｜|]\s+(?:Yahoo!ニュース|Yahoo!ファイナンス|47NEWS|dメニューニュース|山形新聞|荘内日報|日本海新聞|神戸新聞|Kaleva|Yle)$/i,'').trim();
 };
 const dedupeKey=a=>normalize(titleWithoutOutlet(a)).replace(/[\s、。！!？?「」『』【】（）()・:：｜|]/g,'');
+
+// Kobe: prioritize medical/bio only; leave stored originals untouched.
+const kobeMedicalStrong=[
+ '神戸医療産業都市','医療産業都市','神戸医療産業都市推進機構','kbic',
+ 'ビジョンケア','vision care','vc gene therapy','vc cell therapy',
+ 'バッカス・バイオイノベーション','bacchus bioinnovation',
+ '再生医療','遺伝子治療','細胞治療','細胞医療','創薬','バイオ医薬',
+ 'バイオ製造','合成生物学','細胞培養','幹細胞','iPS細胞','ips細胞',
+ '医療機器','医療技術','医療スタートアップ','バイオベンチャー',
+ 'バイオテクノロジー','製薬','臨床試験','治験'
+];
+const kobeMedicalContext=['医療','病院','医薬','バイオ','生命科学','ヘルスケア','健康','疾患','がん','癌','製薬','薬剤','細胞','医学'];
+const kobeInnovationContext=['研究','技術','開発','製造','事業','企業','起業','投資','連携','共同','実用化','実証','拠点','産業','スタートアップ','ベンチャー','創出','誘致','施設','特許','臨床'];
+function kobeMedicalRelevant(a){
+ const t=normalize([a.title,a.title_ja].filter(Boolean).join(' '));
+ return containsAny(t,kobeMedicalStrong)||
+        (containsAny(t,kobeMedicalContext)&&containsAny(t,kobeInnovationContext));
+}
+
 function classify(a){
  const region=a.region,t=normalize(titleWithoutOutlet(a));if(!t)return'review';
  if(containsAny(t,subjects[region]||[]))return'main';
@@ -200,7 +219,7 @@ function render(){
  root.replaceChildren();let total=0;
  for(const name of regions){
   if(region&&region!==name)continue;
-  const matches=(byRegion[name]||[]).filter(a=>(!month||monthKey(a)===month)&&(!query||normalize([a.title,a.title_ja,a.publisher,a.region].join(' ')).includes(query)));
+  const matches=(byRegion[name]||[]).filter(a=>(name!=='神戸'||kobeMedicalRelevant(a))&&(!month||monthKey(a)===month)&&(!query||normalize([a.title,a.title_ja,a.publisher,a.region].join(' ')).includes(query)));
   if(!matches.length)continue;total+=matches.length;
   const section=document.createElement('section');section.className='region';const h=document.createElement('h2');h.textContent=name;section.append(h);
   const main=matches.filter(a=>a._category==='main'),review=matches.filter(a=>a._category==='review');
@@ -222,7 +241,7 @@ async function loadNews(){
    if(!regions.includes(a.region))continue;
    const k=dedupeKey(a);if(!k)continue;
    if(!seenByRegion.has(a.region))seenByRegion.set(a.region,new Set());const seen=seenByRegion.get(a.region);if(seen.has(k))continue;seen.add(k);
-   byRegion[a.region].push({...a,_category:classify(a)});
+   byRegion[a.region].push({...a,_category:a.region==='神戸'&&kobeMedicalRelevant(a)?'main':classify(a)});
   }
   const months=[...new Set(Object.values(byRegion).flat().map(monthKey).filter(Boolean))].sort().reverse();
   for(const m of months){const option=document.createElement('option');option.value=m;const [y,mo]=m.split('-');option.textContent=`${y}年${Number(mo)}月`;monthFilter.append(option);}
