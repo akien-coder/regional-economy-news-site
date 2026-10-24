@@ -21,7 +21,7 @@
 <p class="hint">地域との関連が見出しから確認できる記事を優先表示。判断できない記事は各地域の「要確認」に残しています。検索では「要確認」も対象です。記事が多い場合は「さらに表示」で過去の記事を読めます。</p>
 <div class="bookmark-toolbar">
 <label for="bookmark-token"><strong>GitHub保存キー</strong></label>
-<input id="bookmark-token" type="password" autocomplete="off" spellcheck="false" placeholder="認証キー（このタブ内のみ保持）">
+<input id="bookmark-token" type="password" autocomplete="off" spellcheck="false" placeholder="認証キー（このブラウザに保存）">
 <button id="connect-bookmarks" type="button">接続・更新</button>
 <button id="disconnect-bookmarks" type="button">キーを消去</button>
 <button id="toggle-bookmarks" type="button">保存した記事を見る</button>
@@ -131,7 +131,11 @@ function makeArticle(a){
 }
 const byRegion={};
 const BOOKMARK_API='https://api.github.com/repos/akien-coder/regional-economy-bookmarks/contents/bookmarks.json';
+const TOKEN_STORAGE_KEY='regional-economy-watch-bookmark-token';
+// Keep the token only in this browser profile, until the user deletes it.
+// localStorage is not encrypted: use only on a trusted personal device.
 let authToken='',bookmarks=[],bookmarksSha='',bookmarksOpen=false,bookmarkBusy=false;
+try{authToken=localStorage.getItem(TOKEN_STORAGE_KEY)||'';}catch(e){console.warn('ブラウザ保存を利用できません',e);}
 const tokenBox=document.getElementById('bookmark-token');
 const bookmarkStatus=document.getElementById('bookmark-status');
 const bookmarkPanel=document.getElementById('bookmark-panel');
@@ -160,7 +164,14 @@ async function connectBookmarks(){
  tokenBox.value=''; // Never keep an extra copy in the input.
  if(!authToken){bookmarkStatus.textContent='認証キーを入力してください';return;}
  bookmarkStatus.textContent='確認中…';
- try{await reloadBookmarks()}catch(e){authToken='';bookmarkStatus.textContent='接続失敗: '+e.message;render();}
+ try{
+  await reloadBookmarks();
+  try{localStorage.setItem(TOKEN_STORAGE_KEY,authToken);}catch(e){bookmarkStatus.textContent='接続済み。ただしブラウザにキーを保存できませんでした。';}
+ }catch(e){
+  authToken='';
+  try{localStorage.removeItem(TOKEN_STORAGE_KEY);}catch(_){}
+  bookmarkStatus.textContent='接続失敗: '+e.message;render();
+ }
 }
 async function changeBookmark(a){
  if(bookmarkBusy)return;
@@ -204,7 +215,7 @@ function exportBookmarks(type){
  download('\ufeff'+csv,'regional-bookmarks.csv','text/csv;charset=utf-8');
 }
 document.getElementById('connect-bookmarks').addEventListener('click',connectBookmarks);
-document.getElementById('disconnect-bookmarks').addEventListener('click',()=>{authToken='';tokenBox.value='';bookmarks=[];bookmarksSha='';bookmarkStatus.textContent='切断しました';renderBookmarks();render();});
+document.getElementById('disconnect-bookmarks').addEventListener('click',()=>{authToken='';try{localStorage.removeItem(TOKEN_STORAGE_KEY);}catch(e){}tokenBox.value='';bookmarks=[];bookmarksSha='';bookmarkStatus.textContent='キーを消去しました';renderBookmarks();render();});
 document.getElementById('toggle-bookmarks').addEventListener('click',()=>{bookmarksOpen=!bookmarksOpen;bookmarkPanel.classList.toggle('is-hidden',!bookmarksOpen);document.getElementById('toggle-bookmarks').textContent=bookmarksOpen?'ニュース一覧に戻る':'保存した記事を見る';document.getElementById('news').classList.toggle('is-hidden',bookmarksOpen);document.querySelector('.controls').classList.toggle('is-hidden',bookmarksOpen);if(bookmarksOpen)renderBookmarks();});
 document.getElementById('download-csv').addEventListener('click',()=>exportBookmarks('csv'));
 document.getElementById('download-json').addEventListener('click',()=>exportBookmarks('json'));
@@ -252,6 +263,7 @@ async function loadNews(){
 }
 search.addEventListener('input',render);regionFilter.addEventListener('change',render);monthFilter.addEventListener('change',render);
 document.getElementById('clear-filters').addEventListener('click',()=>{search.value='';regionFilter.value='';monthFilter.value='';render();});
+if(authToken)connectBookmarks();
 loadNews();
 </script>
 </body>
