@@ -67,13 +67,42 @@ function articleTime(a){
  if(a.date){const d=new Date(a.date);if(!Number.isNaN(d.getTime()))return d;}
  return null;
 }
-function monthKey(a){const d=articleTime(a);return d?`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`:'';}
+// Date fields use ISO-style YYYY-MM-DD; missing dates are left blank.
+function isoDate(value){
+ if(value===null||value===undefined||value==='')return '';
+ const raw=String(value).trim();
+ const match=raw.match(/^(\d{4})[-\/](\d{1,2})[-\/](\d{1,2})(?=$|[T\s])/);
+ if(match){
+  const [,year,month,day]=match;
+  const y=Number(year),m=Number(month),d=Number(day);
+  const valid=new Date(Date.UTC(y,m-1,d));
+  if(valid.getUTCFullYear()===y&&valid.getUTCMonth()===m-1&&valid.getUTCDate()===d){
+   return `${year}-${month.padStart(2,'0')}-${day.padStart(2,'0')}`;
+  }
+  return '';
+ }
+ const parsed=new Date(raw);
+ if(Number.isNaN(parsed.getTime()))return '';
+ return `${parsed.getFullYear()}-${String(parsed.getMonth()+1).padStart(2,'0')}-${String(parsed.getDate()).padStart(2,'0')}`;
+}
+function articleDate(a){
+ // Preserve a source's calendar day instead of shifting it through a timezone.
+ return isoDate(a.date)||(articleTime(a)?isoDate(articleTime(a).toLocaleDateString('sv-SE')):'');
+}
+function bookmarkTime(value){
+ if(!value)return '';
+ const d=new Date(value);
+ if(Number.isNaN(d.getTime()))return '';
+ return `${isoDate(d.toLocaleDateString('sv-SE'))} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+}
+function monthKey(a){return articleDate(a).slice(0,7);}
+
 function makeArticle(a){
  const div=document.createElement('div');div.className='article';
  const link=document.createElement('a');link.textContent=a.title_ja||titleWithoutOutlet(a)||a.title||'（無題）';
  try{const u=new URL(a.url,location.href);if(['https:','http:'].includes(u.protocol)){link.href=u.href;link.target='_blank';link.rel='noopener noreferrer';}}catch(e){}
- const meta=document.createElement('div');meta.className='meta';const date=articleTime(a);
- meta.textContent=[a.publisher||'出典不明',date?date.toLocaleDateString('ja-JP'):a.date||''].filter(Boolean).join(' ｜ ');
+ const meta=document.createElement('div');meta.className='meta';
+ meta.textContent=[a.publisher||'出典不明',articleDate(a)].filter(Boolean).join(' ｜ ');
  const row=document.createElement('div');row.className='article-row';row.append(link);
  const save=document.createElement('button');save.type='button';save.className='save-btn';save.textContent=hasBookmark(a)?'★ 保存済み':'☆ 保存';
  if(hasBookmark(a))save.classList.add('saved');
@@ -125,7 +154,7 @@ async function changeBookmark(a){
    if(!Array.isArray(current))throw Error('保存データの形式が不正です');
    const id=bookmarkId(a),old=current.findIndex(b=>b.id===id);
    if(old>=0)current.splice(old,1);
-   else current.push({id,region:a.region,title:a.title_ja||titleWithoutOutlet(a)||a.title||'',original_title:titleWithoutOutlet(a),publisher:a.publisher||'',date:a.date||'',url:savedUrl(a),saved_at:new Date().toISOString(),summary:'',memo:''});
+   else current.push({id,region:a.region,title:a.title_ja||titleWithoutOutlet(a)||a.title||'',original_title:titleWithoutOutlet(a),publisher:a.publisher||'',date:articleDate(a),url:savedUrl(a),saved_at:new Date().toISOString(),summary:'',memo:''});
    try{
     await githubRequest('PUT',{message:old>=0?'Remove regional news bookmark':'Save regional news bookmark',content:toB64(JSON.stringify(current,null,2)+'\n'),sha:file.sha});
     bookmarks=current;bookmarkStatus.textContent=`保存完了・${bookmarks.length}件`;
@@ -140,7 +169,7 @@ function renderBookmarks(){
  if(!authToken){bookmarkList.textContent='保存した記事を見るには認証キーで接続してください。';return;}
  if(!bookmarks.length){bookmarkList.textContent='保存記事はありません。';return;}
  for(const b of [...bookmarks].reverse()){
-  const item=makeArticle(b);const when=document.createElement('div');when.className='meta';when.textContent=`${b.region||''} ｜ 保存：${b.saved_at?new Date(b.saved_at).toLocaleString('ja-JP'):''}`;item.append(when);
+  const item=makeArticle(b);const when=document.createElement('div');when.className='meta';when.textContent=`${b.region||''} ｜ 保存：${b.saved_at?bookmarkTime(b.saved_at):''}`;item.append(when);
   if(b.summary){const p=document.createElement('p');p.textContent=b.summary;item.append(p);}
   const button=document.createElement('button');button.type='button';button.textContent='☆ 保存解除';button.addEventListener('click',()=>changeBookmark(b));item.append(button);bookmarkList.append(item);
  }
@@ -148,9 +177,11 @@ function renderBookmarks(){
 function download(text,name,mime){const blob=new Blob([text],{type:mime});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);}
 function exportBookmarks(type){
  if(!authToken){bookmarkStatus.textContent='先に接続してください';return;}
- if(type==='json')return download(JSON.stringify(bookmarks,null,2)+'\n','regional-bookmarks.json','application/json;charset=utf-8');
+ // Export normalized copies; never mutate the data stored on GitHub.
+ const exported=bookmarks.map(b=>({...b,date:isoDate(b.date),saved_at:bookmarkTime(b.saved_at)}));
+ if(type==='json')return download(JSON.stringify(exported,null,2)+'\n','regional-bookmarks.json','application/json;charset=utf-8');
  const columns=['title','original_title','region','publisher','date','url','saved_at','summary','memo'];
- const csv=[columns,...bookmarks.map(b=>columns.map(k=>String(b[k]??'')))].map(row=>row.map(v=>'"'+v.replace(/"/g,'""')+'"').join(',')).join('\r\n');
+ const csv=[columns,...exported.map(b=>columns.map(k=>String(b[k]??'')))].map(row=>row.map(v=>'"'+v.replace(/"/g,'""')+'"').join(',')).join('\r\n');
  download('\ufeff'+csv,'regional-bookmarks.csv','text/csv;charset=utf-8');
 }
 document.getElementById('connect-bookmarks').addEventListener('click',connectBookmarks);
