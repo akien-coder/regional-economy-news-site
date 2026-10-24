@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="ja">
 <head>
@@ -7,408 +6,202 @@
 <title>Regional Economy Watch</title>
 <style>
 :root{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;color:#242b34;background:#f5f6f8}
-*{box-sizing:border-box}
-body{max-width:1050px;margin:auto;padding:20px}
-header{border-bottom:2px solid #2b5274;padding:10px 0 18px}
-h1{font-size:1.6rem;margin:5px 0}
-h2{font-size:1.4rem;border-left:5px solid #3076ad;padding-left:12px}
-section.region{background:white;border-radius:12px;margin:20px 0;padding:20px}
-.article{border-bottom:1px solid #e6e9ed;padding:11px 0;line-height:1.55}
-.article a{font-weight:650;color:#11589d;text-decoration:none}
-.article a:hover{text-decoration:underline}
-.meta,.status,.hint{color:#647080;font-size:.85rem}
-.status{margin-top:8px}
-details{margin-top:16px;border-top:1px solid #dee3e8;padding-top:12px}
-summary{cursor:pointer;font-weight:600;color:#45586a}
-.warn{background:#fff7e7;border-radius:7px;padding:10px 12px;font-size:.85rem}
-.controls{background:#fff;padding:18px;border-radius:12px;margin:20px 0;display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px}
-.field{display:flex;flex-direction:column;gap:5px}
-.field label{font-weight:600;font-size:.85rem}
-input,select,button{font:inherit}
-input,select{border:1px solid #bcc6d0;border-radius:7px;padding:10px;min-width:0;background:white;width:100%}
-button{padding:8px 14px;border:1px solid #9bb1c4;background:#fff;color:#205782;border-radius:7px;cursor:pointer}
-button:hover{background:#eef5fb}
-.controls-foot{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.loadmore{display:block;margin:14px auto 0}
-.empty{color:#647080}
-@media(max-width:650px){
- body{padding:12px}
- .controls{grid-template-columns:1fr}
- .controls-foot{grid-column:1}
- section.region{padding:14px}
-}
+*{box-sizing:border-box}body{max-width:1050px;margin:auto;padding:20px}header{border-bottom:2px solid #2b5274;padding:10px 0 18px}h1{font-size:1.6rem;margin:5px 0}h2{font-size:1.4rem;border-left:5px solid #3076ad;padding-left:12px}section.region{background:white;border-radius:12px;margin:20px 0;padding:20px}.article{border-bottom:1px solid #e6e9ed;padding:11px 0;line-height:1.55}.article a{font-weight:650;color:#11589d;text-decoration:none}.article a:hover{text-decoration:underline}.meta,.status,.hint{color:#647080;font-size:.85rem}.status{margin-top:8px}details{margin-top:16px;border-top:1px solid #dee3e8;padding-top:12px}summary{cursor:pointer;font-weight:600;color:#45586a}.warn{background:#fff7e7;border-radius:7px;padding:10px 12px;font-size:.85rem}.controls{background:#fff;padding:18px;border-radius:12px;margin:20px 0;display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px}.field{display:flex;flex-direction:column;gap:5px}.field label{font-weight:600;font-size:.85rem}input,select,button{font:inherit}input,select{border:1px solid #bcc6d0;border-radius:7px;padding:10px;min-width:0;background:white;width:100%}button{padding:8px 14px;border:1px solid #9bb1c4;background:#fff;color:#205782;border-radius:7px;cursor:pointer}button:hover{background:#eef5fb}.controls-foot{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.loadmore{display:block;margin:14px auto 0}.empty{color:#647080}.pill{font-size:.76rem;color:#45586a;background:#edf2f8;padding:3px 7px;border-radius:5px;margin-left:5px}@media(max-width:650px){body{padding:12px}.controls{grid-template-columns:1fr}.controls-foot{grid-column:1}section.region{padding:14px}}
+.bookmark-toolbar{background:#fff;border-radius:12px;padding:16px;margin:16px 0;display:flex;gap:10px;flex-wrap:wrap;align-items:center}.bookmark-toolbar input{width:250px;max-width:100%}.bookmark-toolbar .hint{flex-basis:100%}.save-btn{margin-left:8px;font-size:.85rem;padding:4px 9px}.save-btn.saved{background:#e5f2ff;border-color:#3a75ac}.bookmark-actions{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.is-hidden{display:none!important}.article-row{display:flex;gap:8px;align-items:flex-start;justify-content:space-between}.article-row a{flex:1}.danger{color:#a32b2b}.message{font-size:.85rem;color:#40576a}
 </style>
 </head>
 <body>
-<header>
-<h1>Regional Economy Watch</h1>
-<div>地域経済ニュース｜火曜・金曜更新予定</div>
-<div class="status" id="status">ニュースデータを読み込み中…</div>
-</header>
-
+<header><h1>Regional Economy Watch</h1><div>地域経済ニュース｜火曜・金曜更新予定</div><div class="status" id="status">ニュースデータを読み込み中…</div></header>
 <div class="controls" aria-label="記事検索と絞り込み">
- <div class="field">
-  <label for="search">キーワード検索</label>
-  <input id="search" type="search" placeholder="例：Spiber、鳥取大学、Nokia">
- </div>
- <div class="field">
-  <label for="region-filter">地域</label>
-  <select id="region-filter">
-   <option value="">すべての地域</option>
-   <option>オウル</option>
-   <option>鶴岡</option>
-   <option>米子</option>
-   <option>神戸</option>
-  </select>
- </div>
- <div class="field">
-  <label for="month-filter">掲載年月</label>
-  <select id="month-filter">
-   <option value="">すべての年月</option>
-  </select>
- </div>
- <div class="controls-foot">
-  <span class="hint" id="filter-count">読み込み中…</span>
-  <button id="clear-filters" type="button">絞り込みを解除</button>
- </div>
+ <div class="field"><label for="search">キーワード検索</label><input id="search" type="search" placeholder="例：Spiber、鳥取大学、Nokia"></div>
+ <div class="field"><label for="region-filter">地域</label><select id="region-filter"><option value="">すべての地域</option><option>オウル</option><option>鶴岡</option><option>米子</option><option>神戸</option></select></div>
+ <div class="field"><label for="month-filter">掲載年月</label><select id="month-filter"><option value="">すべての年月</option></select></div>
+ <div class="controls-foot"><span class="hint" id="filter-count">読み込み中…</span><button id="clear-filters" type="button">絞り込みを解除</button></div>
 </div>
-
-<p class="hint">
-地域との関連が見出しから確認できる記事を優先表示。
-判断できない記事は各地域の「要確認」に残しています。
-検索では「要確認」も対象です。
-記事が多い場合は「さらに表示」で過去の記事を読めます。
-</p>
-
+<p class="hint">地域との関連が見出しから確認できる記事を優先表示。判断できない記事は各地域の「要確認」に残しています。検索では「要確認」も対象です。記事が多い場合は「さらに表示」で過去の記事を読めます。</p>
+<div class="bookmark-toolbar">
+<label for="bookmark-token"><strong>GitHub保存キー</strong></label>
+<input id="bookmark-token" type="password" autocomplete="off" spellcheck="false" placeholder="認証キー（このタブ内のみ保持）">
+<button id="connect-bookmarks" type="button">接続・更新</button>
+<button id="disconnect-bookmarks" type="button">キーを消去</button>
+<button id="toggle-bookmarks" type="button">保存した記事を見る</button>
+<span id="bookmark-status" class="hint" role="status">未接続。ニュース閲覧にはキー不要です。</span>
+</div>
+<section class="region is-hidden" id="bookmark-panel"><h2>保存した記事</h2>
+<div class="bookmark-actions"><button id="download-csv" type="button">CSVをダウンロード</button><button id="download-json" type="button">JSONをダウンロード</button></div>
+<div id="bookmark-list"></div></section>
 <main id="news"></main>
-
 <script>
 const regions=['オウル','鶴岡','米子','神戸'];
-
 const subjects={
  'オウル':['businessoulu','oulun yliopisto','university of oulu','nokian oulu','tactotek','haltian','fingersoft','quieton'],
  '鶴岡':['spiber','メタジェン','フェルメクテス','サリバテック','ヒューマン・メタボローム・テクノロジーズ','慶應義塾大学先端生命科学研究所','鶴岡サイエンスパーク','鶴岡ガストロノミック'],
  '米子':['trans chromosomics','とっとりバイオフロンティア','染色体工学'],
  '神戸':['神戸医療産業都市','神戸医療産業都市推進機構','ビジョンケア','vc gene therapy','vc cell therapy','バッカス・バイオイノベーション']
 };
-
 const locations={
  'オウル':['oulu','oulun','oulussa','oululais'],
  '鶴岡':['鶴岡','荘内','庄内','羽黒','櫛引','温海'],
  '米子':['米子','中海','皆生'],
  '神戸':['神戸','ポートアイランド','三宮','三ノ宮','新長田','六甲アイランド']
 };
-
-const economy=[
- '経済','企業','産業','投資','雇用','研究','大学','技術','開発','製造','起業',
- '資金','バイオ','医療','観光','商業','農業','食品','食文化','文化',
- '再開発','まちづくり','人口','政策','連携','事業','施設','建設',
- '交通','鉄道','空港','港湾','地域振興','寄付','社会貢献',
- 'talous','yrity','investoin','työllis','teknologia','tutkimus',
- 'yliopisto','matkailu','kehitys','teollisuus','kaupunki','kulttuuri',
- 'rakentami','business','economy','investment','startup','industry',
- 'innovation','university','employment','tourism','technology',
- 'research','development','culture'
-];
-
-const notEconomic=[
- '試合結果','試合速報','勝敗予想',
- 'ottelutulos','urheilutulokset','match highlights','match result'
-];
-
+const economy=['経済','企業','産業','投資','雇用','研究','大学','技術','開発','製造','起業','資金','バイオ','医療','観光','商業','農業','食品','食文化','文化','再開発','まちづくり','人口','政策','連携','事業','施設','建設','交通','鉄道','空港','港湾','地域振興','寄付','社会貢献','talous','yrity','investoin','työllis','teknologia','tutkimus','yliopisto','matkailu','kehitys','teollisuus','kaupunki','kulttuuri','rakentami','business','economy','investment','startup','industry','innovation','university','employment','tourism','technology','research','development','culture'];
+const notEconomic=['試合結果','試合速報','勝敗予想','ottelutulos','urheilutulokset','match highlights','match result'];
 const normalize=s=>String(s??'').normalize('NFKC').toLocaleLowerCase();
 const containsAny=(s,words)=>words.some(w=>s.includes(normalize(w)));
-
 const titleWithoutOutlet=a=>{
- let t=a.title||'';
- const source=(a.publisher||'').trim();
-
- if(source && t.toLowerCase().endsWith(' - '+source.toLowerCase())){
-  t=t.slice(0,-source.length-3);
- }
-
- return t.replace(
-  /\s+[\-–—｜|]\s+(?:Yahoo!ニュース|Yahoo!ファイナンス|47NEWS|dメニューニュース|山形新聞|荘内日報|日本海新聞|神戸新聞|Kaleva|Yle)$/i,
-  ''
- ).trim();
+ let t=a.title||'';const source=(a.publisher||'').trim();
+ if(source && t.toLowerCase().endsWith(' - '+source.toLowerCase()))t=t.slice(0,-source.length-3);
+ return t.replace(/\s+[\-–—｜|]\s+(?:Yahoo!ニュース|Yahoo!ファイナンス|47NEWS|dメニューニュース|山形新聞|荘内日報|日本海新聞|神戸新聞|Kaleva|Yle)$/i,'').trim();
 };
-
-const dedupeKey=a=>normalize(titleWithoutOutlet(a))
- .replace(/[\s、。！!？?「」『』【】（）()・:：｜|]/g,'');
-
+const dedupeKey=a=>normalize(titleWithoutOutlet(a)).replace(/[\s、。！!？?「」『』【】（）()・:：｜|]/g,'');
 function classify(a){
- const region=a.region;
- const t=normalize(titleWithoutOutlet(a));
-
- if(!t)return 'review';
- if(containsAny(t,subjects[region]||[]))return 'main';
-
- if(
-  containsAny(t,locations[region]||[]) &&
-  containsAny(t,economy) &&
-  !containsAny(t,notEconomic)
- ){
-  return 'main';
- }
-
- return 'review';
+ const region=a.region,t=normalize(titleWithoutOutlet(a));if(!t)return'review';
+ if(containsAny(t,subjects[region]||[]))return'main';
+ if(containsAny(t,locations[region]||[])&&containsAny(t,economy)&&!containsAny(t,notEconomic))return'main';
+ return'review';
 }
-
 function articleTime(a){
  const n=Number(a.timestamp);
-
- if(Number.isFinite(n)&&n>0){
-  const d=new Date(n<1e11?n*1000:n);
-  if(!Number.isNaN(d.getTime()))return d;
- }
-
- if(a.date){
-  const d=new Date(a.date);
-  if(!Number.isNaN(d.getTime()))return d;
- }
-
+ if(Number.isFinite(n)&&n>0){const d=new Date(n<1e11?n*1000:n);if(!Number.isNaN(d.getTime()))return d;}
+ if(a.date){const d=new Date(a.date);if(!Number.isNaN(d.getTime()))return d;}
  return null;
 }
-
-function monthKey(a){
- const d=articleTime(a);
- return d
-  ? `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`
-  : '';
-}
-
+function monthKey(a){const d=articleTime(a);return d?`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`:'';}
 function makeArticle(a){
- const div=document.createElement('div');
- div.className='article';
-
- const link=document.createElement('a');
- link.textContent=a.title_ja||titleWithoutOutlet(a)||a.title||'（無題）';
-
- try{
-  const u=new URL(a.url,location.href);
-  if(['https:','http:'].includes(u.protocol)){
-   link.href=u.href;
-   link.target='_blank';
-   link.rel='noopener noreferrer';
-  }
- }catch(e){}
-
- const meta=document.createElement('div');
- meta.className='meta';
-
- const date=articleTime(a);
- meta.textContent=[
-  a.publisher||'出典不明',
-  date?date.toLocaleDateString('ja-JP'):a.date||''
- ].filter(Boolean).join(' ｜ ');
-
- div.append(link,meta);
- return div;
+ const div=document.createElement('div');div.className='article';
+ const link=document.createElement('a');link.textContent=a.title_ja||titleWithoutOutlet(a)||a.title||'（無題）';
+ try{const u=new URL(a.url,location.href);if(['https:','http:'].includes(u.protocol)){link.href=u.href;link.target='_blank';link.rel='noopener noreferrer';}}catch(e){}
+ const meta=document.createElement('div');meta.className='meta';const date=articleTime(a);
+ meta.textContent=[a.publisher||'出典不明',date?date.toLocaleDateString('ja-JP'):a.date||''].filter(Boolean).join(' ｜ ');
+ const row=document.createElement('div');row.className='article-row';row.append(link);
+ const save=document.createElement('button');save.type='button';save.className='save-btn';save.textContent=hasBookmark(a)?'★ 保存済み':'☆ 保存';
+ if(hasBookmark(a))save.classList.add('saved');
+ save.setAttribute('aria-label',save.textContent+' '+link.textContent);
+ save.addEventListener('click',()=>changeBookmark(a));row.append(save);
+ div.append(row,meta);return div;
 }
-
 const byRegion={};
-
-const root=document.getElementById('news');
-const status=document.getElementById('status');
-const search=document.getElementById('search');
-const regionFilter=document.getElementById('region-filter');
-const monthFilter=document.getElementById('month-filter');
-const filterCount=document.getElementById('filter-count');
-
-function addList(container,items,initial=20){
- let count=0;
-
- const button=document.createElement('button');
- button.className='loadmore';
- button.type='button';
-
- function showNext(){
-  const chunk=items.slice(count,count+initial);
-
-  chunk.forEach(a=>{
-   container.insertBefore(makeArticle(a),button);
-  });
-
-  count+=chunk.length;
-
-  button.hidden=count>=items.length;
-  button.textContent=`さらに表示（残り ${items.length-count}件）`;
- }
-
- button.addEventListener('click',showNext);
- container.append(button);
- showNext();
+const BOOKMARK_API='https://api.github.com/repos/akien-coder/regional-economy-bookmarks/contents/bookmarks.json';
+let authToken='',bookmarks=[],bookmarksSha='',bookmarksOpen=false,bookmarkBusy=false;
+const tokenBox=document.getElementById('bookmark-token');
+const bookmarkStatus=document.getElementById('bookmark-status');
+const bookmarkPanel=document.getElementById('bookmark-panel');
+const bookmarkList=document.getElementById('bookmark-list');
+const savedUrl=a=>{try{return new URL(a.url).href}catch(e){return String(a.url||'')}};
+const bookmarkId=a=>savedUrl(a); // The original article URL is the persistent identity.
+const hasBookmark=a=>bookmarks.some(b=>b.id===bookmarkId(a));
+function toB64(text){const bytes=new TextEncoder().encode(text);let binary='';for(const b of bytes)binary+=String.fromCharCode(b);return btoa(binary);}
+function fromB64(text){const binary=atob(text.replace(/\s/g,''));return new TextDecoder().decode(Uint8Array.from(binary,c=>c.charCodeAt(0)));}
+async function githubRequest(method,body){
+ if(!authToken)throw Error('認証キーを入力し「接続・更新」を押してください。');
+ const response=await fetch(BOOKMARK_API,{method,headers:{'Accept':'application/vnd.github+json','Authorization':`Bearer ${authToken}`,'X-GitHub-Api-Version':'2022-11-28',...(body?{'Content-Type':'application/json'}:{})},...(body?{body:JSON.stringify(body)}:{})});
+ let data;try{data=await response.json()}catch(e){throw Error(`HTTP ${response.status}`)}
+ if(!response.ok)throw Error(`HTTP ${response.status}: ${data.message||'GitHub API error'}`);
+ return data;
 }
-
+async function reloadBookmarks(){
+ const file=await githubRequest('GET');
+ const list=JSON.parse(fromB64(file.content));
+ if(!Array.isArray(list))throw Error('bookmarks.json が配列ではありません');
+ bookmarks=list;bookmarksSha=file.sha;
+ bookmarkStatus.textContent=`接続済み・保存 ${bookmarks.length} 件`;renderBookmarks();render();
+}
+async function connectBookmarks(){
+ if(tokenBox.value.trim())authToken=tokenBox.value.trim();
+ tokenBox.value=''; // Never keep an extra copy in the input.
+ if(!authToken){bookmarkStatus.textContent='認証キーを入力してください';return;}
+ bookmarkStatus.textContent='確認中…';
+ try{await reloadBookmarks()}catch(e){authToken='';bookmarkStatus.textContent='接続失敗: '+e.message;render();}
+}
+async function changeBookmark(a){
+ if(bookmarkBusy)return;
+ if(!authToken){bookmarkStatus.textContent='先に保存キーを入力して接続してください';tokenBox.focus();return;}
+ bookmarkBusy=true;bookmarkStatus.textContent='保存中…';
+ try{
+  // Reload before updating to reduce stale-data conflicts between devices.
+  for(let attempt=0;attempt<2;attempt++){
+   const file=await githubRequest('GET');const current=JSON.parse(fromB64(file.content));
+   if(!Array.isArray(current))throw Error('保存データの形式が不正です');
+   const id=bookmarkId(a),old=current.findIndex(b=>b.id===id);
+   if(old>=0)current.splice(old,1);
+   else current.push({id,region:a.region,title:a.title_ja||titleWithoutOutlet(a)||a.title||'',original_title:titleWithoutOutlet(a),publisher:a.publisher||'',date:a.date||'',url:savedUrl(a),saved_at:new Date().toISOString(),summary:'',memo:''});
+   try{
+    await githubRequest('PUT',{message:old>=0?'Remove regional news bookmark':'Save regional news bookmark',content:toB64(JSON.stringify(current,null,2)+'\n'),sha:file.sha});
+    bookmarks=current;bookmarkStatus.textContent=`保存完了・${bookmarks.length}件`;
+    renderBookmarks();render();return;
+   }catch(e){if((e.message.includes('409')||e.message.includes('422'))&&attempt===0)continue;throw e;}
+  }
+ }catch(e){bookmarkStatus.textContent='保存失敗: '+e.message;}
+ finally{bookmarkBusy=false;}
+}
+function renderBookmarks(){
+ bookmarkList.replaceChildren();
+ if(!authToken){bookmarkList.textContent='保存した記事を見るには認証キーで接続してください。';return;}
+ if(!bookmarks.length){bookmarkList.textContent='保存記事はありません。';return;}
+ for(const b of [...bookmarks].reverse()){
+  const item=makeArticle(b);const when=document.createElement('div');when.className='meta';when.textContent=`${b.region||''} ｜ 保存：${b.saved_at?new Date(b.saved_at).toLocaleString('ja-JP'):''}`;item.append(when);
+  if(b.summary){const p=document.createElement('p');p.textContent=b.summary;item.append(p);}
+  const button=document.createElement('button');button.type='button';button.textContent='☆ 保存解除';button.addEventListener('click',()=>changeBookmark(b));item.append(button);bookmarkList.append(item);
+ }
+}
+function download(text,name,mime){const blob=new Blob([text],{type:mime});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);}
+function exportBookmarks(type){
+ if(!authToken){bookmarkStatus.textContent='先に接続してください';return;}
+ if(type==='json')return download(JSON.stringify(bookmarks,null,2)+'\n','regional-bookmarks.json','application/json;charset=utf-8');
+ const columns=['title','original_title','region','publisher','date','url','saved_at','summary','memo'];
+ const csv=[columns,...bookmarks.map(b=>columns.map(k=>String(b[k]??'')))].map(row=>row.map(v=>'"'+v.replace(/"/g,'""')+'"').join(',')).join('\r\n');
+ download('\ufeff'+csv,'regional-bookmarks.csv','text/csv;charset=utf-8');
+}
+document.getElementById('connect-bookmarks').addEventListener('click',connectBookmarks);
+document.getElementById('disconnect-bookmarks').addEventListener('click',()=>{authToken='';tokenBox.value='';bookmarks=[];bookmarksSha='';bookmarkStatus.textContent='切断しました';renderBookmarks();render();});
+document.getElementById('toggle-bookmarks').addEventListener('click',()=>{bookmarksOpen=!bookmarksOpen;bookmarkPanel.classList.toggle('is-hidden',!bookmarksOpen);document.getElementById('toggle-bookmarks').textContent=bookmarksOpen?'ニュース一覧に戻る':'保存した記事を見る';document.getElementById('news').classList.toggle('is-hidden',bookmarksOpen);document.querySelector('.controls').classList.toggle('is-hidden',bookmarksOpen);if(bookmarksOpen)renderBookmarks();});
+document.getElementById('download-csv').addEventListener('click',()=>exportBookmarks('csv'));
+document.getElementById('download-json').addEventListener('click',()=>exportBookmarks('json'));
+const root=document.getElementById('news'),status=document.getElementById('status'),search=document.getElementById('search'),regionFilter=document.getElementById('region-filter'),monthFilter=document.getElementById('month-filter'),filterCount=document.getElementById('filter-count');
+function addList(container,items,initial=20){
+ let count=0;const button=document.createElement('button');button.className='loadmore';button.type='button';
+ function showNext(){const chunk=items.slice(count,count+initial);chunk.forEach(a=>container.insertBefore(makeArticle(a),button));count+=chunk.length;button.hidden=count>=items.length;button.textContent=`さらに表示（残り ${items.length-count}件）`;}
+ container.append(button);showNext();
+}
 function render(){
- const query=normalize(search.value.trim());
- const region=regionFilter.value;
- const month=monthFilter.value;
-
- root.replaceChildren();
- let total=0;
-
+ const query=normalize(search.value.trim()),region=regionFilter.value,month=monthFilter.value;
+ root.replaceChildren();let total=0;
  for(const name of regions){
   if(region&&region!==name)continue;
-
-  const matches=(byRegion[name]||[]).filter(a=>{
-   const correctMonth=!month||monthKey(a)===month;
-   const correctQuery=!query||normalize([
-    a.title,a.title_ja,a.publisher,a.region
-   ].join(' ')).includes(query);
-
-   return correctMonth&&correctQuery;
-  });
-
-  if(!matches.length)continue;
-  total+=matches.length;
-
-  const section=document.createElement('section');
-  section.className='region';
-
-  const h=document.createElement('h2');
-  h.textContent=name;
-  section.append(h);
-
-  const main=matches.filter(a=>a._category==='main');
-  const review=matches.filter(a=>a._category==='review');
-
-  const hint=document.createElement('p');
-  hint.className='hint';
-  hint.textContent=
-   `該当 ${matches.length}件（優先 ${main.length}件／要確認 ${review.length}件・重複除外）`;
-  section.append(hint);
-
-  if(main.length){
-   addList(section,main,20);
-  }else{
-   const p=document.createElement('p');
-   p.className='empty';
-   p.textContent='優先記事はありません。下の「要確認」をご覧ください。';
-   section.append(p);
-  }
-
-  if(review.length){
-   const detail=document.createElement('details');
-
-   const summary=document.createElement('summary');
-   summary.textContent=`要確認の記事を見る（${review.length}件）`;
-   detail.append(summary);
-
-   const note=document.createElement('p');
-   note.className='warn';
-   note.textContent=
-    '地域名や対象企業名が見出しに出ていない記事です。域外連携を含む可能性があるため残しています。';
-   detail.append(note);
-
-   addList(detail,review,20);
-   section.append(detail);
-  }
-
+  const matches=(byRegion[name]||[]).filter(a=>(!month||monthKey(a)===month)&&(!query||normalize([a.title,a.title_ja,a.publisher,a.region].join(' ')).includes(query)));
+  if(!matches.length)continue;total+=matches.length;
+  const section=document.createElement('section');section.className='region';const h=document.createElement('h2');h.textContent=name;section.append(h);
+  const main=matches.filter(a=>a._category==='main'),review=matches.filter(a=>a._category==='review');
+  const hint=document.createElement('p');hint.className='hint';hint.textContent=`該当 ${matches.length}件（優先 ${main.length}件／要確認 ${review.length}件・重複除外）`;section.append(hint);
+  if(main.length){addList(section,main,20);}else{const p=document.createElement('p');p.className='empty';p.textContent='優先記事はありません。下の「要確認」をご覧ください。';section.append(p);}
+  if(review.length){const detail=document.createElement('details');const summary=document.createElement('summary');summary.textContent=`要確認の記事を見る（${review.length}件）`;detail.append(summary);
+   const note=document.createElement('p');note.className='warn';note.textContent='地域名や対象企業名が見出しに出ていない記事です。域外連携を含む可能性があるため残しています。';detail.append(note);addList(detail,review,20);section.append(detail);}
   root.append(section);
  }
-
  filterCount.textContent=`検索結果 ${total}件（重複を除く）`;
-
- if(!total){
-  const p=document.createElement('p');
-  p.className='empty';
-  p.textContent='該当記事はありません。年月・地域・検索語を変更してください。';
-  root.append(p);
- }
+ if(!total){const p=document.createElement('p');p.className='empty';p.textContent='該当記事はありません。年月・地域・検索語を変更してください。';root.append(p);}
 }
-
 async function loadNews(){
  try{
-  const response=await fetch('./data/news.json',{cache:'no-store'});
-
-  if(!response.ok){
-   throw Error('news.json を取得できません（HTTP '+response.status+'）');
-  }
-
-  const articles=await response.json();
-
-  if(!Array.isArray(articles)){
-   throw Error('news.json は記事一覧の配列ではありません');
-  }
-
-  const seenByRegion=new Map();
-
-  for(const name of regions){
-   byRegion[name]=[];
-  }
-
-  const sorted=[...articles].sort(
-   (a,b)=>
-    (articleTime(b)?.getTime()||0)-
-    (articleTime(a)?.getTime()||0)
-  );
-
-  for(const a of sorted){
+  const response=await fetch('./data/news.json',{cache:'no-store'});if(!response.ok)throw Error('news.json を取得できません（HTTP '+response.status+'）');
+  const articles=await response.json();if(!Array.isArray(articles))throw Error('news.json は記事一覧の配列ではありません');
+  const seenByRegion=new Map();for(const name of regions)byRegion[name]=[];
+  for(const a of [...articles].sort((a,b)=>(articleTime(b)?.getTime()||0)-(articleTime(a)?.getTime()||0))){
    if(!regions.includes(a.region))continue;
-
-   const k=dedupeKey(a);
-   if(!k)continue;
-
-   if(!seenByRegion.has(a.region)){
-    seenByRegion.set(a.region,new Set());
-   }
-
-   const seen=seenByRegion.get(a.region);
-
-   if(seen.has(k))continue;
-
-   seen.add(k);
-   byRegion[a.region].push({
-    ...a,
-    _category:classify(a)
-   });
+   const k=dedupeKey(a);if(!k)continue;
+   if(!seenByRegion.has(a.region))seenByRegion.set(a.region,new Set());const seen=seenByRegion.get(a.region);if(seen.has(k))continue;seen.add(k);
+   byRegion[a.region].push({...a,_category:classify(a)});
   }
-
-  const months=[
-   ...new Set(
-    Object.values(byRegion)
-     .flat()
-     .map(monthKey)
-     .filter(Boolean)
-   )
-  ].sort().reverse();
-
-  for(const m of months){
-   const option=document.createElement('option');
-   option.value=m;
-
-   const [y,mo]=m.split('-');
-   option.textContent=`${y}年${Number(mo)}月`;
-
-   monthFilter.append(option);
-  }
-
-  const distinct=Object.values(byRegion)
-   .reduce((n,list)=>n+list.length,0);
-
-  status.textContent=
-   `保存済み：${articles.length}件／表示対象：${distinct}件（重複除外）`;
-
+  const months=[...new Set(Object.values(byRegion).flat().map(monthKey).filter(Boolean))].sort().reverse();
+  for(const m of months){const option=document.createElement('option');option.value=m;const [y,mo]=m.split('-');option.textContent=`${y}年${Number(mo)}月`;monthFilter.append(option);}
+  const distinct=Object.values(byRegion).reduce((n,list)=>n+list.length,0);
+  status.textContent=`保存済み：${articles.length}件／表示対象：${distinct}件（重複除外）`;
   render();
-
- }catch(err){
-  status.textContent='データの読み込みに失敗';
-  root.textContent=err.message;
- }
+ }catch(err){status.textContent='データの読み込みに失敗';root.textContent=err.message;}
 }
-
-search.addEventListener('input',render);
-regionFilter.addEventListener('change',render);
-monthFilter.addEventListener('change',render);
-
-document.getElementById('clear-filters').addEventListener('click',()=>{
- search.value='';
- regionFilter.value='';
- monthFilter.value='';
- render();
-});
-
+search.addEventListener('input',render);regionFilter.addEventListener('change',render);monthFilter.addEventListener('change',render);
+document.getElementById('clear-filters').addEventListener('click',()=>{search.value='';regionFilter.value='';monthFilter.value='';render();});
 loadNews();
 </script>
 </body>
