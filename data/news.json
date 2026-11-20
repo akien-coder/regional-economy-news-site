@@ -1,6 +1,50 @@
 [
   {
     "region": "オウル",
+    "title": "BRIDGES brings businesses together to develop new circular economy...",
+    "url": "https://www.businessoulu.com/en/news/bridges-brings-businesses-together-to-develop-new-circular-economy-solutions-on-an-international-scale/",
+    "date": "2026-11-19",
+    "timestamp": 1795089600.0,
+    "publisher": "BusinessOulu Good news (EN)",
+    "search_source": "BusinessOulu Good news (EN)",
+    "official_mandatory": true,
+    "title_ja": "BRIDGES、新たな循環型経済の構築に向けて企業間連携を推進"
+  },
+  {
+    "region": "オウル",
+    "title": "Oulussa kehitetään virtuaalista vihreän energian tuotantolaitosta tulevaisuuden osaajien koulutukseen",
+    "url": "https://www.businessoulu.com/uutiset/oulussa-kehitetaan-virtuaalista-vihrean-energian-tuotantolaitosta-tulevaisuuden-osaajien-koulutukseen/",
+    "date": "2026-11-18",
+    "timestamp": 1795003200.0,
+    "publisher": "BusinessOulu Hyviä uutisia (FI)",
+    "search_source": "BusinessOulu Hyviä uutisia (FI)",
+    "official_mandatory": true,
+    "title_ja": "オウルで未来の専門家を育成するための仮想グリーンエネルギー生産プラントを開発"
+  },
+  {
+    "region": "オウル",
+    "title": "”Yksi suosituimmista tapahtumistamme” – Järjestötreffit on pian täällä",
+    "url": "https://www.businessoulu.com/uutiset/yksi-suosituimmista-tapahtumistamme-jarjestotreffit-ovat-pian-taalla/",
+    "date": "2026-11-18",
+    "timestamp": 1795003200.0,
+    "publisher": "BusinessOulu Hyviä uutisia (FI)",
+    "search_source": "BusinessOulu Hyviä uutisia (FI)",
+    "official_mandatory": true,
+    "title_ja": "「最も人気のあるイベントの一つ」―「Järjestötreffit」が間もなく開催されます"
+  },
+  {
+    "region": "オウル",
+    "title": "Mahdollisuuksien marraskuu: maksuttomat kokeilualustat yrityksille",
+    "url": "https://www.businessoulu.com/uutiset/mahdollisuuksien-marraskuu-maksuttomat-kokeilualustat-yrityksille/",
+    "date": "2026-11-18",
+    "timestamp": 1795003200.0,
+    "publisher": "BusinessOulu Hyviä uutisia (FI)",
+    "search_source": "BusinessOulu Hyviä uutisia (FI)",
+    "official_mandatory": true,
+    "title_ja": "チャンスの11月：企業向け無料トライアルプラットフォーム"
+  },
+  {
+    "region": "オウル",
     "title": "Henkilöstöalan yritykset rekrytoivat JobCornerissa 17.11.2026",
     "url": "https://www.businessoulu.com/uutiset/henkilostoalan-yritykset-rekrytoivat-jobcornerissa-17-11-2026/",
     "date": "2026-11-17",
@@ -9,6 +53,17 @@
     "search_source": "BusinessOulu Hyviä uutisia (FI)",
     "official_mandatory": true,
     "title_ja": "人材業界各社が11月17日、JobCornerで採用イベントを開催"
+  },
+  {
+    "region": "オウル",
+    "title": "BRIDGES yhdistää yrityksiä rakentamaan kiertotalouden uusia ratkaisuja kansainvälisesti",
+    "url": "https://www.businessoulu.com/uutiset/bridges-yhdistaa-yrityksia-rakentamaan-kiertotalouden-uusia-ratkaisuja-kansainvalisesti/",
+    "date": "2026-11-17",
+    "timestamp": 1794916800.0,
+    "publisher": "BusinessOulu Hyviä uutisia (FI)",
+    "search_source": "BusinessOulu Hyviä uutisia (FI)",
+    "official_mandatory": true,
+    "title_ja": "BRIDGESが企業と連携し、国際的な循環型経済の新たなソリューションを構築"
   },
   {
     "region": "鶴岡",
@@ -27,6 +82,24 @@
     "timestamp": 1794815127.0,
     "publisher": "Infoseek",
     "search_source": "サリバテック"
+  },
+  {
+    "region": "鶴岡",
+    "title": "「食」のイノベーションとグローバルビジネスを考える - 文化放送",
+    "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1hYW9rdE1pS09lZ0FQc0szNFlSTmZFZlV0dU9qNV81RGw2SzdPNjZZeXozTnJWeUgxSC0zRDB6MHNkSk1NMDI3cFFiUlc3anRqWmVESUJnWWJPd1B6Qk5mY0FMZkpjQQ?oc=5",
+    "date": "Sun, 15 Nov 2026 10:08:59 GMT",
+    "timestamp": 1794737339.0,
+    "publisher": "文化放送",
+    "search_source": "鶴岡サイエンスパーク"
+  },
+  {
+    "region": "鶴岡",
+    "title": "小林さん（鶴岡）茂吉文化賞喜ぶ 文翔館贈呈式 村山さん（鶴岡）県科学技術賞受賞 - 荘内日報",
+    "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1tTURjTTVERFlBd3JOQVg1QlJ6MlV2Rk1tWDd5WkVQM0JEZlFfUERMZXQtei1jWmRXcTZ4TWhwTktqSUtjcnV1dzd1RjhtYlNuSVpKenZFRHNXSkdyTXVCRlh2NS0yaEY0a0twT3JUemc?oc=5",
+    "date": "Sun, 15 Nov 2026 08:00:00 GMT",
+    "timestamp": 1794729600.0,
+    "publisher": "荘内日報",
+    "search_source": "荘内日報"
   },
   {
     "region": "鶴岡",
@@ -184,6 +257,15 @@
   },
   {
     "region": "鶴岡",
+    "title": "地域と連携、さらに期待－鶴岡・先端研開設25周年 記写あれこれ・新産業創出に熱い視線 - 山形新聞",
+    "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE85UTZfZGtJUUNJWW41N2FoVUhMbFpjcUFrQktpd0xGbWVNd09Fano1UDRSZzF6UTN2UlVuMXZqc2ZsVUxZZE1KS2JvUGlvM2F0SUc5V1RQeEk3cHBMQjJMbUxGWnQ4WkRUMHpZdHM5bw?oc=5",
+    "date": "Wed, 11 Nov 2026 02:10:00 GMT",
+    "timestamp": 1794363000.0,
+    "publisher": "山形新聞",
+    "search_source": "山形新聞"
+  },
+  {
+    "region": "鶴岡",
     "title": "（株）メタジェン：【実践型健康経営】 東北エプソン株式会社および発酵性食物繊維普及プロジェクトと連携し、「食べて、体感する」“腸活ランチ”モニター試験を開始。〜身体と食への意識を検証〜",
     "url": "https://tsuruoka-sp.jp/press-release/4293/",
     "date": "2026-11-10",
@@ -209,6 +291,15 @@
     "date": "Tue, 10 Nov 2026 03:30:25 GMT",
     "timestamp": 1794281425.0,
     "publisher": "ニコニコニュース",
+    "search_source": "メタジェン"
+  },
+  {
+    "region": "鶴岡",
+    "title": "独自のカプセル技術で有用成分を腸へ届ける！森下仁丹が提案する“腸活迷子”解決の鍵とは - AGARA 紀伊民報",
+    "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBIOVB4QzR4U1FIamh6ZkpmUGl0WmFfR2pRcUxpZTg4anRzdUdWUXh0MXpXN2tkekFLbWpaekN1azk2N28yWjZvdG9YYjY1dk0?oc=5",
+    "date": "Tue, 10 Nov 2026 01:00:00 GMT",
+    "timestamp": 1794272400.0,
+    "publisher": "AGARA 紀伊民報",
     "search_source": "メタジェン"
   },
   {
@@ -326,6 +417,15 @@
     "publisher": "鶴岡サイエンスパーク News",
     "search_source": "鶴岡サイエンスパーク News",
     "official_mandatory": true
+  },
+  {
+    "region": "鶴岡",
+    "title": "～毛髪によるバセドウ病の早期発見に向けて～ 第20回メタボロームシンポジウムにおいて毛髪中の甲状腺ホルモンによるバセドウ病の早期発見の可能性に関するアデランスの研究成果を発表 - Infoseek",
+    "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9nTndhSzFzeUk3di1nQ3I4Qjltdk94SnlJOEg5alc2b2ZHVEhuZ2J0aXk4dUpfRUl2dGFaTWxNQ19Qa240QnVxRW5lNG1ydElsTlVtRGZUNi1aTXpYUVYzU2xuRFBfVzFTT2ZWbUxtSzU0UQ?oc=5",
+    "date": "Thu, 05 Nov 2026 08:00:00 GMT",
+    "timestamp": 1793865600.0,
+    "publisher": "Infoseek",
+    "search_source": "慶應義塾大学先端生命科学研究所"
   },
   {
     "region": "米子",
